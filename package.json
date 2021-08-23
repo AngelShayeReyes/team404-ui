@@ -1,0 +1,25 @@
+{
+  "name": "team404-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node start.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AngelShayeReyes/team404-ui.git"
+  },
+  "keywords": [],
+  "author": "Angel Shaye Reyes <angelshaye.reyes@kainos.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AngelShayeReyes/team404-ui/issues"
+  },
+  "homepage": "https://github.com/AngelShayeReyes/team404-ui#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nunjucks": "^3.2.3"
+  }
+}
