@@ -12,10 +12,11 @@ nunjucks.configure('app/views', {
 app.set('view engine', 'njk');
 
 app.get('/mvp', async (req, res) => {
-    axios.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
+    axios.get('http://localhost:8080/job-roles')
         .then(function (response) {
         // handle success
-            console.log(response.data.date);
+        console.log(response.data)
+        res.render('mvp', { job_roles: response.data} ) 
     })
     .catch(function (error) {
         // handle error
@@ -24,7 +25,6 @@ app.get('/mvp', async (req, res) => {
     .then(function () {
         // always executed
     });
-    res.render('mvp')
 });
 
 app.listen(port, function() {

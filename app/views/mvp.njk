@@ -4,8 +4,22 @@
 
 {% block content  %}  
 
-<p>
-Testing MVP display
-</p>
+<table>
+<tr>
+<td>ID</td>
+<td>Title</td>
+<td>Description</td>
+<td>Contract Type</td>
+</tr>
+{% for job_role in job_roles %}
+<tr>
+    <td> {{ job_role.id }} </td>
+    <td> {{ job_role.title }}</td>
+    <td> {{ job_role.description }} </td>
+    <td> {{ job_role.contractType }} </td>
+ {% endfor %}
+</tr>
+</table>
+
 
 {% endblock %}
