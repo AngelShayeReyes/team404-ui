@@ -17,7 +17,6 @@ app.get('/mvp', async (req, res) => {
     axios.get('http://localhost:8080/job-roles')
         .then(function (response) {
         // handle success
-        console.log(response.data)
         res.render('mvp', { job_roles: response.data} ) 
     })
     .catch(function (error) {
