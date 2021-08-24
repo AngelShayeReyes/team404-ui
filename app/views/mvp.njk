@@ -3,7 +3,25 @@
 {% set title = 'Home' %}
 
 {% block content  %}  
+<div class="header-img"></div>
+<h1>Minimum Viable Product</h1>
 
-<p>Testing MVP display</p>
+<table id="green-table">
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Description</th>
+<th>Contract Type</th>
+</tr>
+{% for job_role in job_roles %}
+<tr>
+    <td> {{ job_role.id }} </td>
+    <td> {{ job_role.title }}</td>
+    <td> {{ job_role.description }} </td>
+    <td> {{ job_role.contractType }} </td>
+ {% endfor %}
+</tr>
+</table>
+
 
 {% endblock %}
