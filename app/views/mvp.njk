@@ -3,24 +3,28 @@
 {% set title = 'Home' %}
 
 {% block content  %}  
-<div class="header-img"></div>
+<div class="header-img" alt="Kainos Colur Bannar"></div>
 <h1>Minimum Viable Product</h1>
 
-<table id="green-table">
-<tr>
-<th>ID</th>
-<th>Title</th>
-<th>Description</th>
-<th>Contract Type</th>
-</tr>
-{% for job_role in job_roles %}
-<tr>
-    <td> {{ job_role.id }} </td>
-    <td> {{ job_role.title }}</td>
-    <td> {{ job_role.description }} </td>
-    <td> {{ job_role.contractType }} </td>
- {% endfor %}
-</tr>
+<table id="green-table" summary="This data table shows our minimum viable product of being able to connect to the api and display out job roles employee">
+<thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Contract Type</th>
+    </tr>
+</thead>
+<tbody>
+    {% for job_role in job_roles %}
+    <tr>
+        <td scope="row"> {{ job_role.id }} </td>
+        <td scope="row"> {{ job_role.title }}</td>
+        <td scope="row"> {{ job_role.description }} </td>
+        <td scope="row"> {{ job_role.contractType }} </td>
+    {% endfor %}
+    </tr>
+</tbody>
 </table>
 
 
