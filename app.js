@@ -9,6 +9,8 @@ nunjucks.configure('app/views', {
     express: app
 });
 
+app.use(express.static('app'));
+
 app.set('view engine', 'njk');
 
 app.get('/mvp', async (req, res) => {
