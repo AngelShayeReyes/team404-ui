@@ -15,7 +15,16 @@
 {% elif contract_type and contract_type == 'consultant'%}
 <h2>Consultant</h2>
 {% else %}
+{% endif %}
 
+{% if job_locations and job_locations.length > 0 %}
+<h2>
+{% for job_location in job_locations%}
+    {{job_location.name}}
+{% endfor %}
+</h2>
+{% else %}
+    <h2>No Location</h2>
 {% endif %}
 
 {% if job_description %}
