@@ -1,0 +1,27 @@
+{% extends "layout.njk" %}
+
+{% set title = 'View Job Specification' %}
+
+{% block content  %}
+
+<div class="header-img" alt="Kainos Colur Bannar"></div>
+
+<h1>{{job_name}}</h1>
+
+{% if contract_type and contract_type == 'full_time' %} 
+<h2>Full Time</h2>
+{% elif contract_type and contract_type == 'part_time'%}
+<h2>Part Time</h2>
+{% elif contract_type and contract_type == 'consultant'%}
+<h2>Consultant</h2>
+{% else %}
+
+{% endif %}
+
+{% if job_description %}
+<p>{{job_description}}</p>
+{% else %}
+<p>No job description</p>
+{% endif %}
+
+{% endblock %}
