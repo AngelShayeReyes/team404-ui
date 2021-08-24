@@ -9,7 +9,7 @@ describe('Checkout MVP', function () {
         driver = await new Builder().forBrowser('chrome').build();
     });
 
-    it('Format Info on MVP', async function() {
+    it('Check format info on MVP', async function() {
         await driver.get('http://localhost:7999/mvp');
         let title = await driver.getTitle();
         assert.equal(title, 'MVP| Home');              
