@@ -2,13 +2,16 @@ require('chromedriver');
 const assert = require('assert');
 const { json } = require('express');
 const {Builder, Key, By, until} = require('selenium-webdriver');
+const script = require('jest');
+ 
+const url = 'http://localhost:7999/viewjobroles'
 
 describe('Checkout View Job Roles', function () {
     let driver;
 
     before(async function() {
         driver = await new Builder().forBrowser('chrome').build();
-        await driver.get('http://localhost:7999/viewjobroles');
+        await driver.get(url);
     });
 
     it('Check webpage is up, running and showing the correct view', async function() {
@@ -31,7 +34,6 @@ describe('Checkout View Job Roles', function () {
 
 
     after(() => driver && driver.quit());
-
     
 })
 
