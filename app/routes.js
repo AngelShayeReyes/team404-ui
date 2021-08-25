@@ -21,7 +21,7 @@ router.get('/mvp', async (req, res) => {
     });
 });
 
-export const fetchData = router.get('/viewjobroles', async (req, res) => {
+router.get('/viewjobroles', async (req, res) => {
     return axios.get('http://localhost:8080/job-roles')
         .then(function (response) {
         // handle success
@@ -37,4 +37,3 @@ export const fetchData = router.get('/viewjobroles', async (req, res) => {
 });
 
 module.exports = router
-fetchData('react');
