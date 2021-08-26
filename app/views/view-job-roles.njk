@@ -22,7 +22,7 @@ env.addFilter('date', dateFilter);
 <tbody>
     {% for job_role in job_roles %}
     <tr>
-        <td scope="row"> {{ job_role.title }}</td>
+        <td><a href="/viewjobspecification/{{ job_role.id}}">{{ job_role.title}}</a></td>
         <td scope="row"> {{ job_role.contractType | replace("_", " ") | capitalize}} </td>
         <td scope="row"> {{ job_role.posted | date("DD MMM YYYY") }} </td>
     {% endfor %}
