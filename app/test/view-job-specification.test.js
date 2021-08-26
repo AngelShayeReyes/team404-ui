@@ -25,7 +25,7 @@ describe('Checkout View Job Specificaton', function () {
 
     it('Check locations exists and contains the expected text', async function() {
         let locations = await driver.findElement(By.id("locations")).getText();
-        assert.equal(true, locations.includes('Belfast') || locations.includes('Birmingham') || ocations.includes('Gdansk') || locations.includes('London'));              
+        assert.equal(true, locations.includes('Belfast') || locations.includes('Birmingham') || locations.includes('Gdansk') || locations.includes('London'));              
     });
 
     it('Check job description exists', async function() {
