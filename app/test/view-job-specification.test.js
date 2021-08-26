@@ -18,6 +18,11 @@ describe('Checkout View Job Specificaton', function () {
         assert.equal(true, job_name != null);              
     });
 
+    it('Check capability exists', async function() {
+        let job_capability = await driver.findElement(By.id("job_capability"));
+        assert.equal(true, job_capability != null);              
+    });
+
     it('Check contract type exists and contains the expected text', async function() {
         let contract_type = await driver.findElement(By.id("contract_type")).getText();
         assert.equal(true, contract_type == "Full Time" || contract_type == "Part Time" || contract_type == "Consultant");              
