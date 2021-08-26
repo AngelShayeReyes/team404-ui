@@ -6,7 +6,7 @@
 
 <div class="header-img" alt="Kainos Colur Bannar"></div>
 
-<h1>{{job_name}}</h1>
+<h1 id = "job_name">{{job_name}}</h1>
 
 {% if contract_type and contract_type == 'full_time' %} 
 <h3><i style='font-size:24px' class='far'>&#xf15c;</i> Full Time</h3>
@@ -24,7 +24,7 @@
 {% endfor %}
 </h3>
 {% else %}
-    <h2>No Location</h2>
+    <h2 id = "locations">No Location</h2>
 {% endif %}
 
 <hr>
@@ -35,9 +35,9 @@
 </h4>
 
 {% if job_description %}
-<p>{{job_description|safe}}</p>
+<p id = "job_description">{{job_description|safe}}</p>
 {% else %}
-<p>No job description</p>
+<p id = "job_description">No job description</p>
 {% endif %}
 
 {% endblock %}
