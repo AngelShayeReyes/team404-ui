@@ -9,23 +9,30 @@
 <h1 id = "job_name">{{job_name}}</h1>
 
 {% if contract_type and contract_type == 'full_time' %} 
-<h2 id = "contract_type">Full Time</h2>
+<h3><i style='font-size:24px' class='far'>&#xf15c;</i> Full Time</h3>
 {% elif contract_type and contract_type == 'part_time'%}
-<h2 id = "contract_type">Part Time</h2>
+<h3><i class="far fa-newspaper" style="font-size:24px;">Part Time</h3>
 {% elif contract_type and contract_type == 'consultant'%}
-<h2 id = "contract_type">Consultant</h2>
+<h3><i class="far fa-newspaper" style="font-size:24px;">Consultant</h3>
 {% else %}
 {% endif %}
 
 {% if job_locations and job_locations.length > 0 %}
-<h2 id = "locations">
+<h3><i class="fa fa-map-marker" style="font-size:24px;"></i>
 {% for job_location in job_locations%}
     {{job_location.name}}
 {% endfor %}
-</h2>
+</h3>
 {% else %}
     <h2 id = "locations">No Location</h2>
 {% endif %}
+
+<hr>
+
+<h4>Our people love the exciting and meaningful work they do, the cutting-edge resources and 
+    technology they have access to, the benefits we offer and the great community we’ve built. 
+    Want to join them?
+</h4>
 
 {% if job_description %}
 <p id = "job_description">{{job_description|safe}}</p>
