@@ -22,6 +22,10 @@ describe('Checkout View Job Specificaton', function () {
     it('Check band level exists', async function() {
         let job_band = await driver.findElement(By.id("job_band_level"));
         assert.equal(true, job_band != null);              
+    
+    it('Check capability exists', async function() {
+        let job_capability = await driver.findElement(By.id("job_capability"));
+        assert.equal(true, job_capability != null);              
     });
 
     it('Check contract type exists and contains the expected text', async function() {
