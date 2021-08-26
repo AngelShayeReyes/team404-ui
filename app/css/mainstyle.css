@@ -2,13 +2,34 @@
 /* Header Formatting */
 h1 { /* Header 1 Colour will be Kainos Blue*/
     color: rgb(40,52,130);
-    margin: 10px;
+    margin: 20px;
   }
 
 h2 {    /* Header 2 Colour will be Kainos Green*/
     color: rgb(90, 153, 71);
-    margin: 10px;
+    margin: 20px;
   }
+
+h3 {    /* Header 3 Colour will be Grey*/
+  color: #2b2828;
+  margin: 20px;
+}
+
+h4 {    /* Header 3 Colour will be Grey*/
+  color: #2b2828;
+  margin: 20px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+p {   
+  color: #2b2828;
+  font-size: 15px;
+  margin: 20px;
+}
+
+
+
 
 .header-img {
   width: 100%;
@@ -125,3 +146,4 @@ div {
   letter-spacing: 1px;
   }
 
+/* Location icon*/

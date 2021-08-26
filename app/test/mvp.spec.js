@@ -13,7 +13,7 @@ describe('Checkout MVP', function () {
     it('Check format info on MVP', async function() {
         await driver.get('http://localhost:7999/mvp');
         let title = await driver.getTitle();
-        assert.equal(title, 'MVP| Home');              
+        assert.equal(title, 'Index| Home');              
     });
 
     after(() => driver && driver.quit());
