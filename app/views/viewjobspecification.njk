@@ -15,20 +15,20 @@
 {% endif %}
 
 {% if contract_type and contract_type == 'full_time' %} 
-<h3 id = "contract_type"><i style='font-size:24px' class='far'>&#xf15c;</i>Full Time</h3>
+<h3 id = "contract_type"><i style='font-size:24px' class='far'>&#xf15c;</i> Full Time</h3>
 {% elif contract_type and contract_type == 'part_time'%}
-<h3 id = "contract_type"><i class="far fa-newspaper" style="font-size:24px;">Part Time</h3>
+<h3 id = "contract_type"><i class="far fa-newspaper" style="font-size:24px;"> Part Time</h3>
 {% elif contract_type and contract_type == 'consultant'%}
-<h3 id = "contract_type"><i class="far fa-newspaper" style="font-size:24px;">Consultant</h3>
+<h3 id = "contract_type"><i class="far fa-newspaper" style="font-size:24px;"> Consultant</h3>
 {% else %}
 {% endif %}
 
 {% if job_locations and job_locations.length > 0 %}
-<h3 id = "locations"><i class="fa fa-map-marker" style="font-size:24px;"></i>
+
 {% for job_location in job_locations%}
-    {{job_location.name}}
+<h3 id = "locations"><i class="fa fa-map-marker" style="font-size:24px;"></i>   {{job_location.name}}</h3>
 {% endfor %}
-</h3>
+
 {% else %}
     <h2 id = "locations">No Location</h2>
 {% endif %}

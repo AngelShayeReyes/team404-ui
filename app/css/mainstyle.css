@@ -63,13 +63,6 @@ html, body{
   margin: 0;
 }
 
-/* Paragraph Formatting*/
-p {
-    font-family: Helvetica, Calibri;
-    margin: 10px;
-}
-
-
 /* Layout Formatting */
 .center {
     display: block;
