@@ -20,7 +20,7 @@ describe('Checkout View Job Specificaton', function () {
 
     it('Check contract type exists and contains the expected text', async function() {
         let contract_type = await driver.findElement(By.id("contract_type")).getText();
-        assert.equal(true, contract_type == "Full Time" || contract_type == "Part Time" || contract_type == "Consultant");              
+        assert.equal(true, contract_type.includes("Full Time") || contract_type.includes("Part Time") || contract_type.includes("Consultant"));              
     });
 
     it('Check locations exists and contains the expected text', async function() {
