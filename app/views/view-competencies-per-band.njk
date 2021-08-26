@@ -1,0 +1,30 @@
+{% extends "layout.njk" %}
+
+{% set title = 'View Competencies Per Band' %}
+
+{% block content  %}
+<div class="header-img" alt="Kainos Colur Bannar"></div>
+
+<h1>Kainos Competencies</h1>
+
+<button onclick="apprenticeFunction()">Try it</button>
+
+<div id="apprentice_id">
+    Contents of the hidden element.
+</div>
+
+<p><b>Note:</b> The element will not take up any space when the display property set to "none".</p>
+
+<script>
+function apprenticeFunction() {
+  var x = document.getElementById("apprentice_id");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+
+{% endblock %}
