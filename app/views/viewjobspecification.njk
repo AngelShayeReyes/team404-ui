@@ -8,6 +8,12 @@
 
 <h1 id = "job_name">{{job_name}}</h1>
 
+{% if job_band_level %}
+<h2 id = "job_band_level">{{job_band_level | replace("_", " ")}}</h2>
+{% else %}
+<h2 id = "job_band_level">No job band level</h2>
+{% endif %}
+
 {% if contract_type and contract_type == 'full_time' %} 
 <h2 id = "contract_type">Full Time</h2>
 {% elif contract_type and contract_type == 'part_time'%}
