@@ -40,7 +40,7 @@ router.get('/viewjobspecification/:jobId', async (req, res) => {
     axios.get('http://localhost:8080/job-roles/' + req.params.jobId)
     .then(function (response) {
         // handle success
-        res.render('viewjobspecification', { job_name: response.data.title, contract_type: response.data.contractType, job_description: response.data.description, job_locations: response.data.locations}) 
+        res.render('viewjobspecification', { job_name: response.data.title, contract_type: response.data.contractType, job_description: response.data.description, job_locations: response.data.locations, job_capability: response.data.capability}) 
     })
     .catch(function (error) {
         // handle error
