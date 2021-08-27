@@ -7,45 +7,37 @@
 
 <h1>Kainos Competencies</h1>
 
-<button class="competency-button" onclick="apprenticeFunction()"></i>Senior Associate</button>
+{% for band in bands%}
+    {% set button = '<button class="competency-button" onclick="expandFunction('+ band + ')"></i>' + band + '</button>' %}
+    
+    {{button | safe}}
 
-<div class="competency-block" id="apprentice_id">
-    <table id="green-table" summary="This data table shows our minimum viable product of being able to connect to the api and display out job roles employee">
-    <thead>
-        <tr>
-            <th scope="title" colspan=4>Personal Performance</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td scope="row"><b>Developing self-awareness</b><br>Understandsand confidently articulatesown learning and developmental needs and proactively seek opportunities to gain experience.Has a strong level of self-awareness and in tune with own wellbeing needsand intuitive of others.</td>
-            <td scope="row"><b>Managing yourself</b><br>Seeks and responds positively to feedback regarding own learning and development. Approachwith a willingness to take on tasks that are outside role scope.</td>
-            <td scope="row"><b>Continuing personal development type</b><br>Looks for opportunities to take on new challenges while proactivelysupporting and encouraging others in identifying learning needs.</td>
-            <td scope="row"><b>Acting with integrity</b><br>Recognises inappropriate behaviours and challenges constructively while promoting the Kainos values. Adapting behaviours and actingin the most appropriate way.</td>
-        </tr>
-    </tbody>
-    </table>
-     <table id="green-table" summary="This data table shows our minimum viable product of being able to connect to the api and display out job roles employee">
-    <thead>
-        <tr>
-            <th scope="title" colspan=3>Communicating and Influence</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td scope="row"><b>Communicates effectively</b><br>Recognisesand respect that communication is a two-wayprocess and demonstrate effective questioning and active listening skills to achieve this. Confidently handles challenging conversations andis clear and constructive in response.</td>
-            <td scope="row"><b>Influencing others</b><br>Persuadesand influenceswith sound rationale argument ‘appealing to others’ interest or reason to gain support.Actsas an influential and effective member of multi-disciplinary teams or projects. Initiate’scollaboration and actively </td>
-            <td scope="row"><b>Customer Focus and Stakeholder management</b><br>Authentic in stakeholder relationshipsand take pride in being inclusive and trustworthy while keeping promises madewith customers. Respondshonestlyand promptly to customer requests and whenever possible within agreed timeframes. </td>
-        </tr>
-    </tbody>
-    </table>
-</div>
-
-<p><b>Note:</b> The element will not take up any space when the display property set to "none".</p>
+    {% set div = '<div class="competency-block" id="' + band + '">' %}
+    {% for competency in band.competencies%}
+        {{div | safe}}
+            <table id="green-table" summary="This data table shows competencies per band">
+            <thead>
+                <tr>
+                    {% set th = '<th scope="title" colspan=' + competency.indicators.length + '>' + competency.name + '</th>' %}
+                    {{th | safe}}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for indicator in competency.indicators%}
+                        {% set td = '<td scope="row"><b>' + indicator.name + '</b><br>' + indicator.description + '</td>'%}
+                        {{td | safe}}
+                    {% endfor %}
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    {% endfor %}
+{% endfor %}
 
 <script>
-function apprenticeFunction() {
-  var x = document.getElementById("apprentice_id");
+function expandFunction(element_id) {
+  var x = document.getElementById(element_id);
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {

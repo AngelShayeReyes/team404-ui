@@ -52,7 +52,18 @@ router.get('/viewjobspecification/:jobId', async (req, res) => {
 });
 
 router.get('/viewcompetencies', async (req, res) => {
-    res.render('view-competencies-per-band') 
+    axios.get('http://localhost:8080/API_ENDPOINT_HERE/')
+    .then(function (response) {
+        // handle success
+        res.render('view-competencies-per-band', { bands: response.data.bands}) 
+    })
+    .catch(function (error) {
+        // handle error
+        console.log(error);
+    })
+    .then(function () {
+        // always executed
+    });
 
 });
 
