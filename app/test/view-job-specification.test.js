@@ -34,6 +34,10 @@ describe('Checkout View Job Specificaton', function () {
         assert.equal(true, job_description != null);              
     });
 
+    it('Check job sharepoint link exists', async function() {
+        let job_job_sharePointLink = await driver.findElement(By.id("job_sharePointLink"));
+        assert.equal(true, job_job_sharePointLink != null);              
+    });
 
     after(() => driver && driver.quit());
     
