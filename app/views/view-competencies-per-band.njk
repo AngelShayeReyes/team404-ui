@@ -3,9 +3,12 @@
 {% set title = 'View Competencies Per Band' %}
 
 {% block content  %}
-<div class="header-img" alt="Kainos Colur Bannar"></div>
 
-<h1>Kainos Competencies</h1>
+<div class="img-wrap">
+  <img src="../images/KainosHeader.jpeg" alt="Kainos Colur Bannar"/>
+</div>
+
+<h1>Kainos Competencies for the Engineering Capability</h1>
 
 {% for band in bands%}
     {% set button = '<button class="competency-button" onclick="expandFunction('+ band + ')"></i>' + band + '</button>' %}
