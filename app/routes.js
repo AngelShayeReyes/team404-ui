@@ -54,7 +54,7 @@ router.get('/viewjobspecification/:jobId', async (req, res) => {
 });
 
 router.get('/viewcompetencies', async (req, res) => {
-    axios.get('http://localhost:8080/API_ENDPOINT_HERE/')
+    axios.get('http://localhost:8080/competencies')
     .then(function (response) {
         // handle success
         res.render('view-competencies-per-band', { bands: response.data.bands}) 
