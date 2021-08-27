@@ -29,6 +29,7 @@ router.get('/viewjobroles', async (req, res) => {
     })
     .catch(function (error) {
         // handle error
+        res.render('error-page', { error_code: error.response.data} ) 
         console.log(error);
     })
     .then(function () {
@@ -44,6 +45,7 @@ router.get('/viewjobspecification/:jobId', async (req, res) => {
     })
     .catch(function (error) {
         // handle error
+        res.render('error-page', { error_code: error.response.data} ) 
         console.log(error);
     })
     .then(function () {
