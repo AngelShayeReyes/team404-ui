@@ -97,6 +97,7 @@ html, body{
 #green-table  td, #green-table  th {
     border: 1px solid #ddd;
     padding: 8px;
+    vertical-align: top
 }
 
 #green-table  tr:nth-child(even){background-color: #f2f2f2;}
@@ -139,4 +140,33 @@ div {
   letter-spacing: 1px;
   }
 
-/* Location icon*/
+
+.competency-button {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-weight:bold;
+  font-size: 17px;
+  letter-spacing: 1px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  border-radius: 12px;
+  width: 250px;
+  height: 50px;
+  }
+
+.competency-button:hover {background-color: #038d5a}
+
+.competency-block {
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 0px;
+
+}
+
+

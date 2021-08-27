@@ -51,4 +51,9 @@ router.get('/viewjobspecification/:jobId', async (req, res) => {
     });
 });
 
+router.get('/viewcompetencies', async (req, res) => {
+    res.render('view-competencies-per-band') 
+
+});
+
 module.exports = router
