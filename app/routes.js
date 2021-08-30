@@ -20,7 +20,7 @@ router.get('/mvp', async (req, res) => {
         // always executed
     });
 });
-
+/* 
 router.get('/viewjobroles', async (req, res) => {
     return axios.get('http://localhost:8080/job-roles')
         .then(function (response) {
@@ -36,7 +36,7 @@ router.get('/viewjobroles', async (req, res) => {
         // always executed
     });
 });
-
+ 
 router.get('/viewjobspecification/:jobId', async (req, res) => {
     axios.get('http://localhost:8080/job-roles/' + req.params.jobId)
     .then(function (response) {
@@ -68,5 +68,5 @@ router.get('/viewcompetencies', async (req, res) => {
     });
 
 });
-
+*/
 module.exports = router

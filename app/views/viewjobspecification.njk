@@ -8,10 +8,10 @@
   <img src="../images/KainosHeader.jpeg" alt="Kainos Colur Bannar"/>
 </div>
 
-<h1 id = "job_name">{{job_name}}</h1>
 
-{% if job_capability %}
-<h2 id = "job_capability">{{job_capability | replace("_", " ")}}</h2>
+<h1 id = "job_name">{{job_spec.title}}</h1>
+{% if job_spec.capability %}
+<h2 id = "job_capability">{{job_spec.capability | replace("_", " ")}}</h2>
 {% else %}
 <h2 id = "job_capability">No job capability</h2>
 {% endif %}
@@ -25,9 +25,9 @@
 {% else %}
 {% endif %}
 
-{% if job_locations and job_locations.length > 0 %}
+{% if job_spec.locations and job_spec.locations.length > 0 %}
 
-{% for job_location in job_locations%}
+{% for job_location in job_spec.locations%}
 <h3 id = "locations"><i class="fa fa-map-marker" style="font-size:24px;"></i>   {{job_location.name}}</h3>
 {% endfor %}
 
@@ -42,8 +42,8 @@
     Want to join them?
 </h4>
 
-{% if job_description %}
-<p id = "job_description">{{job_description|safe}}</p>
+{% if job_spec.description %}
+<p id = "job_description">{{job_spec.description|safe}}</p>
 {% else %}
 <p id = "job_description">No job description</p>
 {% endif %}

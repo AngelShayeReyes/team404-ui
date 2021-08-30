@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "test": "NODE_ENV=development gulp test"
+    "test": "NODE_ENV=development gulp test",
+    "unit-test": "jest unit-test"
   },
   "repository": {
     "type": "git",

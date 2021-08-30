@@ -20,14 +20,22 @@ app.set('view engine', 'njk');
 /*
     Routing
 */
-const routes = require('./app/routes.js')
-app.use('/', routes)
+/* const routes = require('./app/routes.js')
+app.use('/', routes) */
+
+const jobRoleRoutes = require('./app/routes/job-role-route.js');
+const jobSpecRoutes = require('./app/routes/job-specification-route.js');
+const competenciesRoutes = require('./app/routes/competencies-route.js');
+
+app.use("/viewjobroles", jobRoleRoutes);
+app.use("/viewjobspecification", jobSpecRoutes);
+app.use("/viewcompetencies", competenciesRoutes);
 
 app.get('*', (req, res) => {
     res.render('not-found'); 
 });
 
-/* 
+/*
     Port configuration 
 */
 app.listen(port, function() {
