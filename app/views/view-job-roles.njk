@@ -1,0 +1,34 @@
+{% extends "layout.njk" %}
+
+{% set title = 'View Job Roles' %}
+
+var dateFilter = require('nunjucks-date-filter');
+var env = new nunjucks.Environment();
+env.addFilter('date', dateFilter);
+
+{% block content  %}  
+<div class="header-img" alt="Kainos Colur Bannar"></div>
+<h1 id=page_title>View Job Roles</h1>
+<h2>{{job_roles.length}} Results</h2> 
+
+<table id="green-table" summary="This data table shows our minimum viable product of being able to connect to the api and display out job roles employee">
+<thead>
+    <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Contract Type</th>
+        <th scope="col">Posted At</th>
+    </tr>
+</thead>
+<tbody>
+    {% for job_role in job_roles %}
+    <tr>
+        <td scope="row"> {{ job_role.title }}</td>
+        <td scope="row"> {{ job_role.contractType | replace("_", " ") | capitalize}} </td>
+        <td scope="row"> {{ job_role.posted | date("DD MMM YYYY") }} </td>
+    {% endfor %}
+    </tr>
+</tbody>
+</table>
+
+
+{% endblock %}
