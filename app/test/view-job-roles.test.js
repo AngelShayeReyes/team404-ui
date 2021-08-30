@@ -27,11 +27,16 @@ describe('Checkout View Job Roles', function () {
     });
 
     it('Check Contract Type from API is being displayed and entered correctly within the table', async function(){ 
-        let innerText = await driver.findElement(By.xpath("//table/tbody/tr[1]/td[2]")).getText(); 	
+        let innerText = await driver.findElement(By.xpath("//table/tbody/tr[2]/td[3]")).getText(); 	
         assert.equal(innerText, 'Full time');  
  
     });
 
+    it('Check Location from API is being displayed and entered correctly within the table', async function(){ 
+        let innerText = await driver.findElement(By.xpath("//table/tbody/tr[1]/td[2]")).getText(); 	
+        assert.equal(innerText, 'London , More...');  
+ 
+    });
 
     after(() => driver && driver.quit());
     
