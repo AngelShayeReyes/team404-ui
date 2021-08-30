@@ -1,3 +1,7 @@
+const request = require("supertest");
+const express = require("express");
+const app = express();
+
 const mockAxios = {
     get: jest.fn()
 };
@@ -6,7 +10,20 @@ const axios = jest.mock("axios", () => {
     return mockAxios;
 })
 
+const jobRoleRoutes = require('../routes/job-role-route');
 const { getJobRoles } = require("../services/job-role-service");
+
+app.use(express.urlencoded({ extended: false }));
+app.use("/viewjobroles", jobRoleRoutes);
+
+describe("Test the job role route is calling the correct service function", () => {
+  test("Route calls view-job-roles and getJobRoles", async () => {
+    request(app)
+      .get("/")
+      .expect("view-job-roles")
+      .expect(getJobRoles());
+  });
+})
 
 describe("Test the job roles service endpoint", () => {
     

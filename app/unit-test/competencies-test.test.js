@@ -1,3 +1,7 @@
+const request = require("supertest");
+const express = require("express");
+const app = express();
+
 const mockAxios = {
     get: jest.fn()
 };
@@ -6,7 +10,21 @@ const axios = jest.mock("axios", () => {
     return mockAxios;
 })
 
+const competenciesRoutes = require('../routes/competencies-route');
 const { getCompetencies } = require("../services/competencies-service");
+
+app.use(express.urlencoded({ extended: false }));
+app.use("/viewcompetencies", competenciesRoutes);
+
+describe("Test the competency route is calling the correct service function", () => {
+  test("Route calls view-competencies-per-band and getCompetencies", async () => {
+    request(app)
+      .get("/")
+      .expect("view-competencies-per-band")
+      .expect(getCompetencies());
+  });
+})
+
 
 describe("Test the competency service endpoint", () => {
     
