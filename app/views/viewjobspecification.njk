@@ -8,6 +8,12 @@
 
 <h1 id = "job_name">{{job_name}}</h1>
 
+{% if job_band_level %}
+<h2 id = "job_band_level">{{job_band_level | replace("_", " ")}}</h2>
+{% else %}
+<h2 id = "job_band_level">No job band level</h2>
+{% endif %}
+
 {% if job_capability %}
 <h2 id = "job_capability">{{job_capability | replace("_", " ")}}</h2>
 {% else %}
