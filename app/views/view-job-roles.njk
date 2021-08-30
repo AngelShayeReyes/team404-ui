@@ -26,7 +26,7 @@ env.addFilter('date', dateFilter);
 <tbody>
     {% for job_role in job_roles %}
     <tr>
-        <td><a href="/viewjobspecification/{{ job_role.id}}">{{ job_role.title}}</a></td>
+        <td scope="row"> <a href="/viewjobspecification/{{ job_role.id}}">{{ job_role.title}}</a></td>
         <td scope="row"> 
             {{ job_role.locations[0].name }} 
             {% if job_role.locations[1] != null %}, More...{% endif %}

@@ -22,6 +22,6 @@ gulp.task('nodemon', (cb) => {
 });
 
 gulp.task('test', gulp.series('nodemon', function(done) {
-  return gulp.src('app/test/*.js')
+  return gulp.src('app/test-selenium/*.js')
     .pipe(mocha({reporter: 'spec' , timeout:10000}));
 }));

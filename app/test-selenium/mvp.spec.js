@@ -1,0 +1,20 @@
+require('chromedriver');
+const { doesNotMatch } = require('assert');
+const assert = require('assert');
+const {Builder, Key, By, until} = require('selenium-webdriver');
+
+describe('Checkout MVP', function () {
+    let driver;
+
+    before(async function() {
+        driver = await new Builder().forBrowser('chrome').build();
+    });
+
+    it('Check format info on MVP', async function() {
+        await driver.get('http://localhost:7999/mvp');
+        let title = await driver.getTitle();
+        assert.equal(title, 'Index| Home');              
+    });
+
+    after(() => driver && driver.quit());
+})
