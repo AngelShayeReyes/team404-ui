@@ -26,10 +26,16 @@ h4 {
 /* Paragraph Formatting */
 p {   
   color: #2b2828;
-  font-size: 15px;
+  font-size: 16px;
   margin: 20px;
 }
 
+/* Bullet Points */
+ul.tab {
+  list-style-type: circle;
+  margin-top: 0px;
+  margin: 15px;
+}
 
 /* Header Images and Wrapping */
 .img-wrap {
@@ -118,6 +124,32 @@ html, body{
     text-align: left;
     background-color: #04AA6D;
     color: white;
+}
+
+#us007-table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  text-align: center;
+  width: 90%;
+  margin: 20px;
+  font-size: 15px;
+}
+
+#us007-table  td,tr, #us007-table  th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  vertical-align: top
+}
+
+#us007-table  tr:hover {background-color: #ddd;}
+
+#us007-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #04AA6D;
+  border-color:#ddd;
+  color: white;
 }
   
 
