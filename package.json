@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "test": "echo UNIT TESTS NOT IMPLEMENTED YET, USE 'npm run test-selenium' TO RUN SELENIUM TESTS INSTEAD",
+    "test": "jest unit-test",
     "test-selenium": "NODE_ENV=development gulp test"
   },
   "repository": {
