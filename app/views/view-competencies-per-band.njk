@@ -1,0 +1,53 @@
+{% extends "layout.njk" %}
+
+{% set title = 'View Competencies Per Band' %}
+
+{% block content  %}
+
+<div class="img-wrap">
+  <img src="../images/KainosHeader.jpeg" alt="Kainos Colur Bannar"/>
+</div>
+
+<h1>Kainos Competencies for the Engineering Capability</h1>
+
+{% for band in bands%}
+    {% set button = '<button class="competency-button" onclick="expandFunction('+ band + ')"></i>' + band + '</button>' %}
+    
+    {{button | safe}}
+
+    {% set div = '<div class="competency-block" id="' + band + '">' %}
+    {% for competency in band.competencies%}
+        {{div | safe}}
+            <table id="green-table" summary="This data table shows competencies per band">
+            <thead>
+                <tr>
+                    {% set th = '<th scope="title" colspan=' + competency.indicators.length + '>' + competency.name + '</th>' %}
+                    {{th | safe}}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for indicator in competency.indicators%}
+                        {% set td = '<td scope="row"><b>' + indicator.name + '</b><br>' + indicator.description + '</td>'%}
+                        {{td | safe}}
+                    {% endfor %}
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<script>
+function expandFunction(element_id) {
+  var x = document.getElementById(element_id);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+
+{% endblock %}
