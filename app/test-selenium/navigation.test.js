@@ -40,6 +40,11 @@ describe('Checkout Navigation Page', function () {
         assert.equal(page_header, 'Engineering Capability');            
     });
 
+    it('Check link bannar links to homepage', async function() {
+        await driver.findElement(By.id("Homepage Link")).click()
+        let page_header = await driver.findElement(By.id("page_title")).getText(); 	
+        assert.equal(page_header, 'Kainos Job Application'); 
+    });
 
     after(() => driver && driver.quit());
     
