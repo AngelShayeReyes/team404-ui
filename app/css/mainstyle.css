@@ -47,6 +47,12 @@ ul.tab {
   margin: 0;
 }
 
+.imgWrap{
+  border-radius: 8px;
+  width: 150px;
+  height: 150px;
+}
+
 div > img {
   display: block;
   position: absolute;
