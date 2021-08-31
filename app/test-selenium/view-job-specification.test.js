@@ -49,6 +49,11 @@ describe('Checkout View Job Specificaton', function () {
         assert.equal(true, job_job_sharePointLink != null);              
     });
 
+    it('Check job responsiblities exists', async function() {
+        let job_responsibilities= await driver.findElement(By.id("job_responsibilities"));
+        assert.equal(true, job_responsibilities != null);              
+    });
+
     after(() => driver && driver.quit());
     
 })
