@@ -20,14 +20,14 @@ describe('Checkout Navigation Page', function () {
     });
 
     it('Check link from navigation to job roles', async function() {
-        await driver.findElement(By.linkText("Job Roles")).click()
+        await driver.findElement(By.id("Job Roles Link")).click()        
         let page_header = await driver.findElement(By.id("page_title")).getText(); 	
         assert.equal(page_header, 'View Job Roles');           
     });
 
     it('Check link from navigation to competencies for engineering capability', async function() {
         await driver.navigate().back();
-        await driver.findElement(By.linkText("Competencies for the Engineering Capability")).click()
+        await driver.findElement(By.id("Competencies for the Engineering Capability Link")).click()
         let page_header = await driver.findElement(By.id("page_title")).getText(); 	
         assert.equal(page_header, 'Kainos Competencies for the Engineering Capability');               
     });
@@ -35,7 +35,7 @@ describe('Checkout Navigation Page', function () {
 
     it('Check link from navigation to matrix of roles', async function() {
         await driver.navigate().back();
-        await driver.findElement(By.linkText("Matrix of Roles")).click()
+        await driver.findElement(By.id("Matrix of Roles Link")).click()
         let page_header = await driver.findElement(By.id("page_title")).getText(); 	
         assert.equal(page_header, 'Engineering Capability');            
     });
