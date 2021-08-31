@@ -11,6 +11,7 @@ const axios = jest.mock("axios", () => {
 })
 
 const competenciesRoutes = require('../routes/competencies-route');
+const getCompetenciesService = require("../services/competencies-service");
 const { getCompetencies } = require("../services/competencies-service");
 
 app.use(express.urlencoded({ extended: false }));
@@ -21,7 +22,7 @@ describe("Test the competency route is calling the correct service function", ()
     request(app)
       .get("/")
       .expect("view-competencies-per-band")
-      .expect(getCompetencies());
+      .expect(getCompetenciesService.getCompetencies());
   });
 })
 
