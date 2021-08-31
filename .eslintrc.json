@@ -1,0 +1,15 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true,
+        "node":true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 12
+    },
+    "ignorePatterns": ["/app/test-selenium/*js", "/app/test/*js", "/app/unit-test/*js"],
+    "rules": {
+    }
+}
