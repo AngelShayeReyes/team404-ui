@@ -5,15 +5,24 @@
 
 {% block content  %}  
 <div class="img-wrap">
-  <img src="../images/KainosHeader.jpeg" alt="Kainos Colur Bannar"/>
+  <img class="img-bannar" src="../images/KainosHeader.jpeg" alt="Kainos Colur Bannar"/>
 </div>
 
 <h1 id=page_title>Kainos Job Application</h1>
 <p>This online job application serves both Kainos employees and recruitment admin to retrieve and update job roles and their relevant information.</p>
-<h2>View</h2>
-<h4>Job Roles</h4> <a href="viewjobroles"><img src="../images/JobRoles.png" alt="Picture of JobRoles" class="imgWrap"></a>
-<h4>Competencies for the Engineering Capability</h4> <a href="viewjobroles"><img src="../images/Jigsaw.png" alt="Picture of jigsaw" class="imgWrap"></a>
-<h4>Matrix of Roles</h4> <a href="viewjobroles"><img src="../images/Pyramid.png" alt="Picture of Pyramid" class="imgWrap"></a>
-
+<div class="rowImg">
+  <div class="columnImg">
+      <a href="viewjobroles"><img src="../images/JobRoles.png" alt="Picture of JobRoles" class="imgWrap"></a>
+    <div>Job Roles</div>
+  </div>
+  <div class="columnImg">
+    <a href="viewcompetencies"><img src="../images/Jigsaw.png" alt="Picture of jigsaw" class="imgWrap"></a>
+    <div>Competencies for the Engineering Capability</div>
+  </div>
+  <div class="columnImg">
+    <a href="viewmatrixofroles"><img src="../images/Pyramid.png" alt="Picture of Pyramid" class="imgWrap"></a>
+    <div>Matrix of Roles</div>
+  </div>
+</div>
 
 {% endblock %}

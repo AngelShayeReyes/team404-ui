@@ -53,7 +53,7 @@ ul.tab {
   height: 150px;
 }
 
-div > img {
+div > img-bannar {
   display: block;
   position: absolute;
   top: 50%;
@@ -61,6 +61,7 @@ div > img {
   min-height: 100%;
   min-width: 100%;
   transform: translate(-50%, -50%);
+  margin: 0;
 }
 
 .header-name-img {
@@ -215,4 +216,21 @@ input[type=submit]:hover {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.columnImg {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  text-align: center;
+}
+
+.rowImg::after {
+  content: "";
+  clear: both;
+  display: table;
 }
