@@ -5,6 +5,7 @@
         "timeout": 1000
     },
     "urls": [
-        "http://localhost:7999/viewjobroles"
+        "http://localhost:7999/viewjobroles",
+        "http://localhost:7999/viewjobspecification/1"
     ]
 }
