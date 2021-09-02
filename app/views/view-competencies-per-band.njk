@@ -10,13 +10,14 @@
 
 <h1>Kainos Competencies for the Engineering Capability</h1>
 
-{% for band in bands%}
-    {% set button = '<button class="competency-button" onclick="expandFunction('+ band + ')"></i>' + band + '</button>' %}
+{% for band in bands %}
+    {% set quote = "'" %}
+    {% set button = '<button class="competency-button" onclick="expandFunction(' + quote +  band.band + quote + ')">' + band.band + '</button>' %}
     
     {{button | safe}}
 
-    {% set div = '<div class="competency-block" id="' + band + '">' %}
-    {% for competency in band.competencies%}
+    {% set div = '<div class="competency-block" id="' + band.band + '">' %}
+    {% for competency in band.competencies %}
         {{div | safe}}
             <table id="green-table" summary="This data table shows competencies per band">
             <thead>
@@ -27,7 +28,7 @@
             </thead>
             <tbody>
                 <tr>
-                    {% for indicator in competency.indicators%}
+                    {% for indicator in competency.indicators %}
                         {% set td = '<td scope="row"><b>' + indicator.name + '</b><br>' + indicator.description + '</td>'%}
                         {{td | safe}}
                     {% endfor %}
