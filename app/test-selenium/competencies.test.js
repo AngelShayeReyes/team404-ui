@@ -25,7 +25,7 @@ describe('Checkout Kainos Competencies for the Engineering Capability', function
         assert.equal(innerText, 'Personal Performance');     
     });
 
-    it('Check "Principal>Working With Others" description title from API is being displayed', async function(){ 
+    it('Check "Consultant>Working With Others" description title from API is being displayed', async function(){ 
         let innerText = await driver.findElement(By.xpath('//*[@id="Consultant2"]/table/tbody/tr/td[1]/b')).getText(); 	
         assert.equal(innerText, 'Mobilises self and others to drive self-improvement');     
     });
