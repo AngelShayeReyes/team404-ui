@@ -26,7 +26,6 @@ describe("Test the competency route is calling the correct service function", ()
   });
 })
 
-
 describe("Test the competency service endpoint", () => {
     
     test("The results should return competency list", async () => {
@@ -40,19 +39,26 @@ describe("Test the competency service endpoint", () => {
                             'name' : 'Personal_Performance',
                             'indicators' :
                             [
-                                {'name' : 'Developing self-awareness', 'name' : '...', 'description' : "..."}, {'description' : "..."}
+                                {'name' : 'Developing self-awareness', 'description' : "..."}, 
+                                {'name' : '...', 'description' : "..."}
                             ]
                         }
                     ]
-                }
+                },
+                {
+                    'band' : '...',
+                    'competencies' : [
+                        
+                    ]
+                },
              ]
         };
         mockAxios.get.mockImplementation(() => {
             return Promise.resolve(expected);
         });
         let results = await getCompetencies();
-        expect(results).toBe(expected.data.bands);
-        expect(mockAxios.get).toHaveBeenCalledWith('http://localhost:8080/competencies');
+        expect(results).toBe(expected.data);
+        expect(mockAxios.get).toHaveBeenCalledWith('http://localhost:8080/bands-competencies');
     });
 
     test("The results should return an undefined list", async () => {
@@ -61,7 +67,7 @@ describe("Test the competency service endpoint", () => {
         });
         let results = await getCompetencies();
         expect(results).toBe(undefined);
-        expect(mockAxios.get).toHaveBeenCalledWith('http://localhost:8080/competencies');
+        expect(mockAxios.get).toHaveBeenCalledWith('http://localhost:8080/bands-competencies');
     })
 
 })
