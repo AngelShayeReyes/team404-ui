@@ -10,6 +10,8 @@ env.addFilter('date', dateFilter);
 <h1 id=page_title>View Job Roles</h1>
 <h2>{{job_roles.length}} Results</h2> 
 
+<input type="text" id="myInput" placeholder="Search in table..." title="Search in Job Roles">
+
 <table id="green-table" summary="This data table shows the current job roles within Kainos">
 <thead>
     <tr>
@@ -19,13 +21,14 @@ env.addFilter('date', dateFilter);
         <th scope="col">Posted At</th>
     </tr>
 </thead>
-<tbody>
+<tbody id="myTable">
     {% for job_role in job_roles %}
     <tr>
         <td scope="row"> <a href="/viewjobspecification/{{ job_role.id}}">{{ job_role.title}}</a></td>
         <td scope="row"> 
-            {{ job_role.locations[0].name }} 
-            {% if job_role.locations[1] != null %}, More...{% endif %}
+            {% for location in job_role.locations %}
+            {{ location.name }}
+            {% endfor %}
         </td>
         <td scope="row"> {{ job_role.contractType | replace("_", " ") | capitalize}} </td>
         <td scope="row"> {{ job_role.posted | date("DD MMM YYYY") }} </td>
@@ -33,6 +36,22 @@ env.addFilter('date', dateFilter);
     </tr>
 </tbody>
 </table>
+
+<p id="demo"></p>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    var valueArr = value.split(',');
+    document.getElementById("demo").innerHTML = "Found arr0: " + valueArr[0] + " and arr[1]: " + valueArr[1] + " in the search bar";
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 
 
 {% endblock %}

@@ -37,6 +37,12 @@ ul.tab {
   margin: 15px;
 }
 
+ul-none {
+  list-style-type: none;
+  margin-top: 0px;
+  margin: 15px;
+}
+
 /* Header Images and Wrapping */
 .img-wrap {
   width: 100%;
@@ -121,8 +127,9 @@ html, body{
     vertical-align: top
 }
 
+/*
 #green-table  tr:nth-child(even){background-color: #f2f2f2;}
-
+*/
 #green-table  tr:hover {background-color: #ddd;}
 
 #green-table th {
@@ -176,12 +183,6 @@ input[type=submit]:hover {
   background-color: #45a049;
 }
 
-/* div {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-} */
-
 .submit {
   font-weight:bold;
   font-size: 17px;
@@ -233,4 +234,39 @@ input[type=submit]:hover {
   content: "";
   clear: both;
   display: table;
+}
+
+/* Search */
+ #searchBox {
+  float: right;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  margin-right: 12px;
+}
+
+/*Checkbox Filters*/
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }
