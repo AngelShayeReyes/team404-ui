@@ -8,9 +8,6 @@ env.addFilter('date', dateFilter);
 
 {% block content  %}  
 <h1 id=page_title>View Job Roles</h1>
-<h2>{{job_roles.length}} Results</h2> 
-
-<input type="text" id="serachBar" placeholder="Search in table..." title="Search in Job Roles">
 
 <div class="jobRoles-wrap">
   <h4><strong>Filter by Contract Type:</strong></h4>
@@ -28,9 +25,20 @@ env.addFilter('date', dateFilter);
     <label><input type="checkbox" name="jr-location" value="Toronto" id="Toronto" /> Toronto </label><br>
     <label><input type="checkbox" name="jr-location" value="Gdansk" id="Gdansk" /> Gdansk </label><br>
   </form>
+  <h4><strong>Filter by Band:</strong></h4>
+  <form>
+    <label><input type="checkbox" name="jr-band" value="Leadership" id="Leadership" /> Leadership </label><br>
+    <label><input type="checkbox" name="jr-band" value="Principal" id="Principal" /> Principal </label><br> 
+    <label><input type="checkbox" name="jr-band" value="Manager" id="Manager" /> Manager </label><br>
+    <label><input type="checkbox" name="jr-band" value="Consultant" id="Consultant" /> Consultant </label><br>
+    <label><input type="checkbox" name="jr-band" value="Senior_Associate" id="Senior_Associate" /> Senior Associate </label><br>
+    <label><input type="checkbox" name="jr-band" value="Associate" id="Associate" /> Associate </label><br>
+    <label><input type="checkbox" name="jr-band" value="Trainee" id="Trainee" /> Trainee </label><br>
+    <label><input type="checkbox" name="jr-band" value="Apprentice" id="Apprentice" /> Apprentice </label><br>
+  </form>
 </div>
 
-<table class="jobRoles" summary="This data table shows the current job roles within Kainos">
+<table class="jobRolesTable" summary="This data table shows the current job roles within Kainos">
 <thead>
     <tr>
         <th scope="col">Title</th>
@@ -39,9 +47,9 @@ env.addFilter('date', dateFilter);
         <th scope="col">Posted At</th>
     </tr>
 </thead>
-<tbody id="myTable">
+<tbody>
     {% for job_role in job_roles %}
-      <tr class="jobRole" data-category="{{ job_role.contractType}} {{ job_role.title }} {% for location in job_role.locations %}{{ location.name }} {% endfor %}">
+      <tr class="jobRole" data-category="{{ job_role.contractType}} {{ job_role.title }} {% for location in job_role.locations %}{{ location.name }} {% endfor %}{{job_role.band.name}} {{job_role.capability}}">
           <td scope="row"> <a href="/viewjobspecification/{{ job_role.id}}">{{ job_role.title}}</a></td>
           <td scope="row"> 
               {{ job_role.locations[0].name }} 
@@ -56,29 +64,18 @@ env.addFilter('date', dateFilter);
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-  $(document).ready(function(){
-    $("#myInput").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#myTable tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
-    });
-  });
-</script>
 
 <script>
   var $filterCheckboxes = $('input[type="checkbox"]');
   var filterFunc = function() {
-    
+
     var selectedFilters = {};
 
+    // seperating rule for filter name 
     $filterCheckboxes.filter(':checked').each(function() {
-
       if (!selectedFilters.hasOwnProperty(this.name)) {
         selectedFilters[this.name] = [];
       }
-
       selectedFilters[this.name].push(this.value);
     });
 
@@ -92,7 +89,7 @@ env.addFilter('date', dateFilter);
       $filteredResults = $filteredResults.filter(function() {
 
         var matched = false,
-          currentFilterValues = $(this).data('category').split(' ');
+        currentFilterValues = $(this).data('category').split(' ');
 
         // loop over each category value in the current .jobRole's data-category
         $.each(currentFilterValues, function(_, currentFilterValue) {
@@ -104,7 +101,7 @@ env.addFilter('date', dateFilter);
           if ($.inArray(currentFilterValue, filterValues) != -1) {
             matched = true;
             return false;
-          }
+            }
         });
 
         // if matched is true the current .jobRole element is returned

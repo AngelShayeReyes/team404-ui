@@ -1,4 +1,3 @@
-
 /* Header Formatting */
 h1 { /* Header 1 Colour will be Kainos Blue*/
     color: rgb(40,52,130);
@@ -17,6 +16,13 @@ h3 {
 
 h4 {    
   color: #2b2828;
+  margin: 20px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+h5 {    
+  color: #2b2828;
   font-size: 17px;
   font-weight: bold;
 }
@@ -29,6 +35,7 @@ p {
   margin: 20px;
 }
 
+
 /* Bullet Points */
 ul.tab {
   list-style-type: circle;
@@ -36,11 +43,12 @@ ul.tab {
   margin: 15px;
 }
 
-ul-none {
+.ul-none {
   list-style-type: none;
   margin-top: 0px;
   margin: 15px;
 }
+
 
 /* Header Images and Wrapping */
 .img-wrap {
@@ -52,13 +60,13 @@ ul-none {
   margin: 0;
 }
 
-.imgWrap{
+.imgHomepage{
   border-radius: 8px;
   width: 150px;
   height: 150px;
 }
 
-div > img-bannar {
+.img-bannar {
   display: block;
   position: absolute;
   top: 50%;
@@ -66,21 +74,7 @@ div > img-bannar {
   min-height: 100%;
   min-width: 100%;
   transform: translate(-50%, -50%);
-  margin: 0;
 }
-
-.header-name-img {
-    width: 250px;
-    height: 75px;
-    background: url('../../images/KainosName.png');
-    background-size: cover;
-    padding: 0;
-    margin: 0;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    
-    }
 
 
 /* Layout Formatting */
@@ -126,10 +120,7 @@ html, body{
     vertical-align: top
 }
 
-/*
-#green-table  tr:nth-child(even){background-color: #f2f2f2;}
-*/
-#green-table  tr:hover {background-color: #ddd;}
+.green-table  tr:hover {background-color: #ddd;}
 
 .green-table th {
     padding-top: 12px;
@@ -188,7 +179,7 @@ input[type=submit]:hover {
   letter-spacing: 1px;
   }
 
-/* Other Buttons */
+/* Competency Button */
 .competency-button {
   background-color: #04AA6D;
   border: none;
@@ -220,21 +211,20 @@ input[type=submit]:hover {
 * {
   box-sizing: border-box;
 }
-
-.columnImg {
+/* Homepage Formatting*/
+.colHomepageImg {
   float: left;
   width: 20%;
   padding: 10px;
   text-align: center;
 }
 
-.rowImg::after {
+.rowHomepageImg::after {
   content: "";
   clear: both;
   display: table;
 }
 
-/* Search */
  #searchBox {
   float: right;
   font-size: 16px;
@@ -244,34 +234,8 @@ input[type=submit]:hover {
   margin-right: 12px;
 }
 
+
 /*Checkbox Filters*/
-
-#serachBar {
-  background-image: url('/css/searchicon.png');
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  width: 90%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-
 .jobRoles-wrap {
   font-family: Arial, Helvetica, sans-serif;
   float:left;
@@ -281,19 +245,20 @@ td, th {
   margin-top: 0px;
   margin-right: 0px;
 }	
-.jobRoles {
+.jobRolesTable {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   float:left;
   width:70%;
+  margin-top:50px;
 }
 
-.jobRoles  td, .jobRoles  th {
+.jobRolesTable  td, .jobRolesTable  th {
   border: 1px solid #ddd;
   padding: 8px;
   vertical-align: top
 }
-.jobRoles div {
+.jobRolesTable div {
   float:left;
   width:90%;
   height:68px;
@@ -304,9 +269,9 @@ td, th {
   position:relative;
 }	
 
-.jobRoles  tr:hover {background-color: #ddd;}
+.jobRolesTable  tr:hover {background-color: #ddd;}
 
-.jobRoles th {
+.jobRolesTable th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;

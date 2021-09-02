@@ -9,23 +9,23 @@
 
 <h1 id=page_title>Kainos Job Application</h1>
 <p>This online job application serves both Kainos employees and recruitment admin to retrieve and update job roles and their relevant information.</p>
-<div class="rowImg">
-<ul-none id="myUL">
+<div class="rowHomepageImg">
+<ul id="Navigation List" class="ul-none">
   <li><a href="#"></a> 
-    <div class="columnImg">
-      <a href="viewjobroles"><img id="Job Roles Link" src="../images/JobRoles.png" alt="Picture of JobRoles" class="imgWrap"></a>
+    <div class="colHomepageImg">
+      <a href="viewjobroles"><img id="Job Roles Link" src="../images/JobRoles.png" alt="Picture of JobRoles" class="imgHomepage"></a>
       <div>Job Roles</div>
     </div>
   </li>
   <li><a href="#"></a>
-    <div class="columnImg">
-      <a href="viewcompetencies"><img id="Competencies for the Engineering Capability Link" src="../images/Jigsaw.png" alt="Picture of jigsaw" class="imgWrap"></a>
+    <div class="colHomepageImg">
+      <a href="viewcompetencies"><img id="Competencies for the Engineering Capability Link" src="../images/Jigsaw.png" alt="Picture of jigsaw" class="imgHomepage"></a>
       <div>Competencies for the Engineering Capability</div>
     </div>
   </li>
   <li><a href="#"></a>
-    <div class="columnImg">
-      <a href="viewmatrixofroles"><img id="Matrix of Roles Link" src="../images/Pyramid.png" alt="Picture of Pyramid" class="imgWrap"></a>
+    <div class="colHomepageImg">
+      <a href="viewmatrixofroles"><img id="Matrix of Roles Link" src="../images/Pyramid.png" alt="Picture of Pyramid" class="imgHomepage"></a>
       <div>Matrix of Roles</div>
     </div>
   </li>
@@ -37,7 +37,7 @@ function searchFunction() {
     var input, filter, ul, li, div, i, txtValue;
     input = document.getElementById("searchBox");
     filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
+    ul = document.getElementById("Navigation List");
     li = ul.getElementsByTagName("li");
     for (i = 0; i < li.length; i++) {
         div = li[i].getElementsByTagName("div")[0];
