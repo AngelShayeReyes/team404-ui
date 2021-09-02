@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "test": "jest unit-test",
-    "test-selenium": "NODE_ENV=development gulp test"
+    "test-selenium": "NODE_ENV=development gulp test",
+    "test-accessibilty": "pa11y-ci --config app/test-accessibility/.pa11yci.json"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,7 @@
     "supertest": "^6.1.6"
   },
   "devDependencies": {
-    "eslint": "^7.32.0"
+    "eslint": "^7.32.0",
+    "pa11y-ci": "^2.4.2"
   }
 }

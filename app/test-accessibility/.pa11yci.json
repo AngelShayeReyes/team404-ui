@@ -1,0 +1,10 @@
+{
+    "default": {
+        "standard": "WCAG2AAA",
+        "level": "error",
+        "timeout": 1000
+    },
+    "urls": [
+        "http://localhost:7999/viewjobroles"
+    ]
+}
