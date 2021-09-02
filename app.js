@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const nunjucks = require('nunjucks')
-const axios = require('axios');
 const dateFilter = require('nunjucks-date-filter');
 
 let port = 7999;
