@@ -10,9 +10,27 @@ env.addFilter('date', dateFilter);
 <h1 id=page_title>View Job Roles</h1>
 <h2>{{job_roles.length}} Results</h2> 
 
-<input type="text" id="myInput" placeholder="Search in table..." title="Search in Job Roles">
+<input type="text" id="serachBar" placeholder="Search in table..." title="Search in Job Roles">
 
-<table id="green-table" summary="This data table shows the current job roles within Kainos">
+<div class="jobRoles-wrap">
+  <h4><strong>Filter by Contract Type:</strong></h4>
+  <form>
+    <label><input type="checkbox" name="jr-contractType" value="full_time" id="full_time" /> Full Time</label><br>
+    <label><input type="checkbox" name="jr-contractType" value="part_time" id="part_time" /> Part Time</label><br> 
+    <label><input type="checkbox" name="jr-contractType" value="contractor" id="contractor" /> Contractor</label>
+  </form>
+  <h4><strong>Filter by Location:</strong></h4>
+  <form>
+    <label><input type="checkbox" name="jr-location" value="London" id="London" /> London </label><br>
+    <label><input type="checkbox" name="jr-location" value="Belfast" id="Belfast" /> Belfast </label><br> 
+    <label><input type="checkbox" name="jr-location" value="Birmingham" id="Birmingham" /> Birmingham </label><br>
+    <label><input type="checkbox" name="jr-location" value="Derry" id="Derry" /> Derry </label><br>
+    <label><input type="checkbox" name="jr-location" value="Toronto" id="Toronto" /> Toronto </label><br>
+    <label><input type="checkbox" name="jr-location" value="Gdansk" id="Gdansk" /> Gdansk </label><br>
+  </form>
+</div>
+
+<table class="jobRoles" summary="This data table shows the current job roles within Kainos">
 <thead>
     <tr>
         <th scope="col">Title</th>
@@ -23,35 +41,82 @@ env.addFilter('date', dateFilter);
 </thead>
 <tbody id="myTable">
     {% for job_role in job_roles %}
-    <tr>
-        <td scope="row"> <a href="/viewjobspecification/{{ job_role.id}}">{{ job_role.title}}</a></td>
-        <td scope="row"> 
-            {% for location in job_role.locations %}
-            {{ location.name }}
-            {% endfor %}
-        </td>
-        <td scope="row"> {{ job_role.contractType | replace("_", " ") | capitalize}} </td>
-        <td scope="row"> {{ job_role.posted | date("DD MMM YYYY") }} </td>
+      <tr class="jobRole" data-category="{{ job_role.contractType}} {{ job_role.title }} {% for location in job_role.locations %}{{ location.name }} {% endfor %}">
+          <td scope="row"> <a href="/viewjobspecification/{{ job_role.id}}">{{ job_role.title}}</a></td>
+          <td scope="row"> 
+              {{ job_role.locations[0].name }} 
+              {% if job_role.locations[1] != null %}, More...{% endif %}
+          </td>
+          <td scope="row"> {{ job_role.contractType | replace("_", " ") | capitalize}} </td>
+          <td scope="row"> {{ job_role.posted | date("DD MMM YYYY") }} </td>
+      </tr>
     {% endfor %}
-    </tr>
 </tbody>
 </table>
 
-<p id="demo"></p>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    var valueArr = value.split(',');
-    document.getElementById("demo").innerHTML = "Found arr0: " + valueArr[0] + " and arr[1]: " + valueArr[1] + " in the search bar";
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+  $(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
     });
   });
-});
 </script>
 
+<script>
+  var $filterCheckboxes = $('input[type="checkbox"]');
+  var filterFunc = function() {
+    
+    var selectedFilters = {};
+
+    $filterCheckboxes.filter(':checked').each(function() {
+
+      if (!selectedFilters.hasOwnProperty(this.name)) {
+        selectedFilters[this.name] = [];
+      }
+
+      selectedFilters[this.name].push(this.value);
+    });
+
+    // create a collection containing all of the filterable elements
+    var $filteredResults = $('.jobRole');
+
+    // loop over the selected filter name -> (array) values pairs
+    $.each(selectedFilters, function(name, filterValues) {
+
+      // filter each .jobRole element
+      $filteredResults = $filteredResults.filter(function() {
+
+        var matched = false,
+          currentFilterValues = $(this).data('category').split(' ');
+
+        // loop over each category value in the current .jobRole's data-category
+        $.each(currentFilterValues, function(_, currentFilterValue) {
+
+          // if the current category exists in the selected filters array
+          // set matched to true, and stop looping. as we're ORing in each
+          // set of filters, we only need to match once
+
+          if ($.inArray(currentFilterValue, filterValues) != -1) {
+            matched = true;
+            return false;
+          }
+        });
+
+        // if matched is true the current .jobRole element is returned
+        return matched;
+
+      });
+    });
+
+    $('.jobRole').hide().filter($filteredResults).show();
+  }
+
+  $filterCheckboxes.on('change', filterFunc);  
+</script>
 
 {% endblock %}
