@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 var nodemon = require('gulp-nodemon');
-const { exit } = require('yargs');
 
 gulp.task('nodemon', (cb) => {
   let started = false;
@@ -21,7 +20,7 @@ gulp.task('nodemon', (cb) => {
 
 });
 
-gulp.task('test', gulp.series('nodemon', function(done) {
+gulp.task('test', gulp.series('nodemon', function() {
   return gulp.src('app/test-selenium/*.js')
     .pipe(mocha({reporter: 'spec' , timeout:10000}));
 }));

@@ -2,9 +2,9 @@ const axios = require('axios');
 
 exports.getCompetencies = async () => {
     let results;
-    await axios.get('http://localhost:8080/competencies')
+    await axios.get('http://localhost:8080/bands-competencies')
         .then(response => {
-            results = response.data.bands;
+            results = response.data;
         })
         .catch(error => {
             console.log(error);

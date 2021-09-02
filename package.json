@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "test": "jest unit-test",
+    "test": "jest --forceExit unit-test",
     "test-selenium": "NODE_ENV=development gulp test"
   },
   "repository": {
@@ -38,6 +38,6 @@
     "supertest": "^6.1.6"
   },
   "devDependencies": {
-    "tablefilter": "^0.7.2"
+    "eslint": "^7.32.0"
   }
 }
