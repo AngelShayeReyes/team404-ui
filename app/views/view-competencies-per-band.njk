@@ -12,9 +12,11 @@
 
 {% for band in bands %}
     {% set quote = "'" %}
-    {% set button = '<button class="competency-button" onclick="expandFunction(' + quote +  band.band + quote + ',' + band.competencies.length + ')"></i>' + band.band + '</button>' %}
+    {% set button = '<button class="competency-button" onclick="expandFunction(' + quote +  band.band + quote + ',' + band.competencies.length + ')"></i>' + band.band | replace("_", " ") + '</button>' %}
     
+    <div>
     {{button | safe}}
+    </div>
 
     {% for competency in band.competencies %}
         {% set div = '<div class="competency-block" id="' + band.band + loop.index + '">' %}
