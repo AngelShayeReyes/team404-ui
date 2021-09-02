@@ -12,12 +12,12 @@
 
 {% for band in bands %}
     {% set quote = "'" %}
-    {% set button = '<button class="competency-button" onclick="expandFunction(' + quote +  band.band + quote + ')">' + band.band + '</button>' %}
+    {% set button = '<button class="competency-button" onclick="expandFunction(' + quote +  band.band + quote + ',' + band.competencies.length + ')"></i>' + band.band + '</button>' %}
     
     {{button | safe}}
 
-    {% set div = '<div class="competency-block" id="' + band.band + '">' %}
     {% for competency in band.competencies %}
+        {% set div = '<div class="competency-block" id="' + band.band + loop.index + '">' %}
         {{div | safe}}
             <table id="green-table" summary="This data table shows competencies per band">
             <thead>
@@ -40,12 +40,14 @@
 {% endfor %}
 
 <script>
-function expandFunction(element_id) {
-  var x = document.getElementById(element_id);
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
+function expandFunction(element_id, no_of_elements) {
+  for (let i = 1; i <= no_of_elements; i++) { 
+      var x = document.getElementById(element_id + i);
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
   }
 }
 </script>
