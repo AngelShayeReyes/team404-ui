@@ -6,4 +6,5 @@ router.get("/", async (req, res) => {
     res.render('view-job-roles', {job_roles: await jobRoleService.getJobRoles()});
 });
 
+
 module.exports = router
