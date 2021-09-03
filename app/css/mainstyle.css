@@ -53,7 +53,7 @@ ul.tab {
   height: 150px;
 }
 
-div > img-bannar {
+.img-bannar {
   display: block;
   position: absolute;
   top: 50%;
