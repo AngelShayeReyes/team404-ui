@@ -26,10 +26,16 @@ h4 {
 /* Paragraph Formatting */
 p {   
   color: #2b2828;
-  font-size: 15px;
+  font-size: 16px;
   margin: 20px;
 }
 
+/* Bullet Points */
+ul.tab {
+  list-style-type: circle;
+  margin-top: 0px;
+  margin: 15px;
+}
 
 /* Header Images and Wrapping */
 .img-wrap {
@@ -41,7 +47,13 @@ p {
   margin: 0;
 }
 
-div > img {
+.imgWrap{
+  border-radius: 8px;
+  width: 150px;
+  height: 150px;
+}
+
+.img-bannar {
   display: block;
   position: absolute;
   top: 50%;
@@ -49,6 +61,7 @@ div > img {
   min-height: 100%;
   min-width: 100%;
   transform: translate(-50%, -50%);
+  margin: 0;
 }
 
 .header-name-img {
@@ -119,6 +132,32 @@ html, body{
     background-color: #498205;
     color: white;
 }
+
+#us007-table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  text-align: center;
+  width: 90%;
+  margin: 20px;
+  font-size: 15px;
+}
+
+#us007-table  td,tr, #us007-table  th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  vertical-align: top
+}
+
+#us007-table  tr:hover {background-color: #ddd;}
+
+#us007-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #04AA6D;
+  border-color:#ddd;
+  color: white;
+}
   
 
 /* Form Formatting */
@@ -170,4 +209,21 @@ input[type=submit]:hover {
   margin-top: 0px;
   border-radius: 5px;
   padding: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.columnImg {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  text-align: center;
+}
+
+.rowImg::after {
+  content: "";
+  clear: both;
+  display: table;
 }

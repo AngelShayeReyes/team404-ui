@@ -26,6 +26,18 @@ describe("Test the job role route is calling the correct service function", () =
   });
 })
 
+app.use(express.urlencoded({ extended: false }));
+app.use("/viewjobroles", jobRoleRoutes);
+
+describe("Test the job role route is calling the correct service function", () => {
+  test("Route calls view-job-roles and getJobRoles", async () => {
+    request(app)
+      .get("/")
+      .expect("view-job-roles")
+      .expect(getJobRoles());
+  });
+})
+
 describe("Test the job roles service endpoint", () => {
     
     test("The results should return job role list", async () => {
