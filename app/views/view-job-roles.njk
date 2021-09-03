@@ -10,68 +10,99 @@ env.addFilter('date', dateFilter);
 <h1 id=page_title>View Job Roles</h1>
 
 <div class="jobRoles-wrap">
-  {% if job_roles[0].contractType != null %}
-    <h4><strong>Filter by Contract Type:</strong></h4>
-    <form>
-      {% set current_display = [] %}
-      {% for job_role in job_roles %}
-        {% if not current_display.includes(job_role.contractType) %}
-          {% set current_display = (current_display.push(job_role.contractType), current_display) %}
-          <label><input type="checkbox" name="jr-contractType" value="{{ job_role.contractType }}" id="{{ job_role.contractType }}" /> {{ job_role.contractType | replace("_", " ") | capitalize}} </label><br>
+  <div id="contract-type-checkboxes">
+    {% set current_display = [] %}
+    {% for job_role in job_roles %}
+      {% if not current_display.includes(job_role.contractType) %}
+        {% set current_display = (current_display.push(job_role.contractType), current_display) %}
+      {% endif %}
+    {% endfor %}
+    {% if current_display.length >= 2%}
+      <h4><strong>Filter by Contract Type:</strong></h4>
+      <form>
+      {% for element in current_display %}
+        <label><input type="checkbox" name="jr-contractType" value="{{ element }}" id="{{ element }}" /> {{ element | replace("_", " ") | capitalize}} </label><br>
+      {% endfor %}
+      </form>
+    {% endif %}
+  </div>
+
+  <div id="location-checkboxes">
+    {% set current_display = [] %}
+    {% for job_role in job_roles %}
+      {% for location in job_role.locations %}
+        {% if not current_display.includes(location.name) %}
+          {% set current_display = (current_display.push(location.name), current_display) %}
         {% endif %}
       {% endfor %}
-    </form>
-  {% endif %}
-  {% if job_roles[0].band.name != null %}
-    <h4><strong>Filter by Location:</strong></h4>
-    <form>
-      {% set current_display = [] %}
-      {% for job_role in job_roles %}
-        {% for location in job_role.locations %}
-          {% if not current_display.includes(location.name) %}
-            {% set current_display = (current_display.push(location.name), current_display) %}
-            <label><input type="checkbox" name="jr-location" value="{{ location.name}}" id="{{ location.name }}" /> {{ location.name }} </label><br>
-          {% endif %}
-        {% endfor %}
+    {% endfor %}
+    {% if current_display.length >= 2%}
+      <h4><strong>Filter by Location:</strong></h4>
+      <form>
+      {% for element in current_display %}
+        <label><input type="checkbox" name="jr-location" value="{{ element }}" id="{{ element }}" /> {{ element }} </label><br>
       {% endfor %}
-    </form>
-  {% endif %}
-  {% if job_roles[0].band.name != null %}
-    <h4><strong>Filter by Band:</strong></h4>
-    <form>
-      {% set current_display = [] %}
-      {% for job_role in job_roles %}
-        {% if not current_display.includes(job_role.band.name) %}
-          {% set current_display = (current_display.push(job_role.band.name), current_display) %}
-          <label><input type="checkbox" name="jr-band" value="{{ job_role.band.name }}" id="{{ job_role.band.name }}" /> {{ job_role.band.name | replace("_", " ")}} </label><br>
-        {% endif %}
+      </form>
+    {% endif %}
+  </div>
+
+  <div id="capability-checkboxes">
+    {% set current_display = [] %}
+    {% for job_role in job_roles %}
+      {% if not current_display.includes(job_role.capability) %}
+        {% set current_display = (current_display.push(job_role.capability), current_display) %}
+      {% endif %}
+    {% endfor %}
+    {% if current_display.length >= 2%}
+      <h4><strong>Filter by Capability:</strong></h4>
+      <form>
+      {% for element in current_display %}
+        <label><input type="checkbox" name="jr-capability" value="{{ element }}" id="{{ element }}" /> {{ element | replace("_", " ") | capitalize}} </label><br>
       {% endfor %}
-    </form>
-  {% endif %}
+      </form>
+    {% endif %}
+  </div>
+
+  <div id="band-checkboxes">
+    {% set current_display = [] %}
+    {% for job_role in job_roles %}
+      {% if not current_display.includes(job_role.band.name) %}
+        {% set current_display = (current_display.push(job_role.band.name), current_display) %}
+      {% endif %}
+    {% endfor %}
+    {% if current_display.length >= 2%}
+      <h4><strong>Filter by Band:</strong></h4>
+      <form>
+      {% for element in current_display %}
+        <label><input type="checkbox" name="jr-band" value="{{ element }}" id="{{ element }}" /> {{ element | replace("_", " ") | capitalize}} </label><br>
+      {% endfor %}
+      </form>
+    {% endif %}
+  </div>
 </div>
 
 <table class="jobRolesTable" summary="This data table shows the current job roles within Kainos">
-<thead>
-    <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Location</th>
-        <th scope="col">Contract Type</th>
-        <th scope="col">Posted At</th>
-    </tr>
-</thead>
-<tbody>
-    {% for job_role in job_roles %}
-      <tr class="jobRole" data-category="{{ job_role.contractType}} {{ job_role.title }} {% for location in job_role.locations %}{{ location.name }} {% endfor %}{{job_role.band.name}} {{job_role.capability}}">
-          <td scope="row"> <a href="/viewjobspecification/{{ job_role.id}}">{{ job_role.title}}</a></td>
-          <td scope="row"> 
-              {{ job_role.locations[0].name }} 
-              {% if job_role.locations[1] != null %}, More...{% endif %}
-          </td>
-          <td scope="row"> {{ job_role.contractType | replace("_", " ") | capitalize}} </td>
-          <td scope="row"> {{ job_role.posted | date("DD MMM YYYY") }} </td>
+  <thead>
+      <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Location</th>
+          <th scope="col">Contract Type</th>
+          <th scope="col">Posted At</th>
       </tr>
-    {% endfor %}
-</tbody>
+  </thead>
+  <tbody>
+      {% for job_role in job_roles %}
+        <tr class="jobRole" data-category="{{ job_role.contractType}} {{ job_role.title }} {% for location in job_role.locations %}{{ location.name }} {% endfor %}{{job_role.band.name}} {{job_role.capability}}">
+            <td scope="row"> <a href="/viewjobspecification/{{ job_role.id}}">{{ job_role.title}}</a></td>
+            <td scope="row"> 
+                {{ job_role.locations[0].name }} 
+                {% if job_role.locations[1] != null %}, More...{% endif %}
+            </td>
+            <td scope="row"> {{ job_role.contractType | replace("_", " ") | capitalize}} </td>
+            <td scope="row"> {{ job_role.posted | date("DD MMM YYYY") }} </td>
+        </tr>
+      {% endfor %}
+  </tbody>
 </table>
 
 
