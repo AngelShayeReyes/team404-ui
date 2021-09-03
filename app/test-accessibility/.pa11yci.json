@@ -5,7 +5,28 @@
         "timeout": 1000
     },
     "urls": [
+        {
+            "url": "http://localhost:7999/navigation",
+            "timeout": 50000,
+            "screenCapture": "app/test-accessibility/screenCaptures/desktop_navigation.png",
+            "viewport": {
+                "width": 1280,
+                "height": 1024
+            }
+        },
+        {
+            "url": "http://localhost:7999/navigation",
+            "timeout": 50000,
+            "screenCapture": "app/test-accessibility/screenCaptures/mobile_navigation.png",
+            "viewport": {
+                "width": 320,
+                "height": 480,
+                "isMobile": true
+            }
+        },
         "http://localhost:7999/viewjobroles",
-        "http://localhost:7999/viewjobspecification/1"
+        "http://localhost:7999/viewjobspecification/1",
+        "http://localhost:7999/viewcompetencies",
+        "http://localhost:7999/viewmatrixofroles"
     ]
 }
