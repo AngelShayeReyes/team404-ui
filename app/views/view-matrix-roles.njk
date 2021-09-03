@@ -32,8 +32,10 @@ The Lattice below provides a detailed view of jobs by Capability and Management 
         <th scope="row">{{band.band_name}}</th>
         {% for job_family in matrix_roles.job_families %}
             {% for job in band.jobs %}
-                {% if job_family.job_family_name == job.job_family_name %}
+                {% if loop.index == 1%}
                     <td scope="row">{% for job_title in band.jobs.job_titles %}{{job_title}}{% endfor %}</td>
+                {% elif job_family.job_family_name == job.job_family_name %}
+                    <td scope="row">{% for job_title in band.jobs.job_titles %}<br>{{job_title}}{% endfor %}</td>
                 {% elif loop.index == band.jobs.length%}
                     <td scope="row"> </td>
                 {% endif %}
