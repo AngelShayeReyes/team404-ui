@@ -14,7 +14,6 @@
                 "height": 1024
             }
         },
-
         {
             "url": "http://localhost:7999/viewjobroles",
             "timeout": 50000,
@@ -24,7 +23,6 @@
                 "height": 1024
             }
         },
-
         {
             "url": "http://localhost:7999/viewjobspecification/1",
             "timeout": 50000,
@@ -34,7 +32,6 @@
                 "height": 1024
             }
         },
-
         {
             "url": "http://localhost:7999/viewcompetencies",
             "timeout": 50000,
@@ -44,7 +41,6 @@
                 "height": 1024
             }
         },
-
         {
             "url": "http://localhost:7999/viewmatrixofroles",
             "timeout": 50000,
@@ -52,6 +48,57 @@
             "viewport": {
                 "width": 1280,
                 "height": 1024
+            }
+        },
+
+        {
+            "url": "http://localhost:7999/navigation",
+            "timeout": 50000,
+            "screenCapture": "app/test-accessibility/screenCaptures/mobile_navigation.png",
+            "viewport": {
+                "width": 320,
+                "height": 480,
+                "isMobile": true
+            }
+        },
+        {
+            "url": "http://localhost:7999/viewjobroles",
+            "timeout": 50000,
+            "screenCapture": "app/test-accessibility/screenCaptures/mobile_viewjobroles.png",
+            "viewport": {
+                "width": 320,
+                "height": 480,
+                "isMobile": true
+            }
+        },
+        {
+            "url": "http://localhost:7999/viewjobspecification/1",
+            "timeout": 50000,
+            "screenCapture": "app/test-accessibility/screenCaptures/mobile_viewjobspecification-1.png",
+            "viewport": {
+                "width": 320,
+                "height": 480,
+                "isMobile": true
+            }
+        },
+        {
+            "url": "http://localhost:7999/viewcompetencies",
+            "timeout": 50000,
+            "screenCapture": "app/test-accessibility/screenCaptures/mobile_viewcompetencies.png",
+            "viewport": {
+                "width": 320,
+                "height": 480,
+                "isMobile": true
+            }
+        },
+        {
+            "url": "http://localhost:7999/viewmatrixofroles",
+            "timeout": 50000,
+            "screenCapture": "app/test-accessibility/screenCaptures/mobile_viewmatrixofroless.png",
+            "viewport": {
+                "width": 320,
+                "height": 480,
+                "isMobile": true
             }
         }
     ]
