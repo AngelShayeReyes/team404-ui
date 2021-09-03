@@ -1,0 +1,97 @@
+{% extends "layout.njk" %}
+
+{% set title = 'View Matrix of Roles' %}
+
+{% block content  %}  
+<h1 id=page_title>Engineering Capability</h1>
+
+<p>
+The Lattice below provides a detailed view of jobs by Capability and Management Level.
+<ul class="tab">
+    <li>Management Levels are shown in the first column. </li>
+    <li>Job families are displayed along the top row - these are sub-groups within capabilities that group people by further skills and competencies. </li> 
+</ul>
+</p>
+
+<table id="us007-table" summary="This data table shows the roles within the engineering capability">
+<thead>
+    <tr>
+        <td scope="col"> </td>
+        <th scope="col">Engineering Strategy and Planning</th>
+        <th scope="col">Engineering</th>
+        <th scope="col">Architecture</th>
+        <th scope="col">Testing and Quality Assurance</th>
+        <th scope="col">Product Specialist</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <th scope="row">Leadership Community</th>
+        <td scope="row">Chief Technology Officer (CTO) <br>Technology Lead</td>
+        <td scope="row"> </td>
+        <td scope="row"> </td>
+        <td scope="row"> </td>
+        <td scope="row"> </td>
+    </tr>
+    <tr>
+        <th scope="row">Principal</th>
+        <td scope="row"> </td>
+        <td scope="row"> </td>
+        <td scope="row">Principal Architect</td>
+        <td scope="row">Principal Test Architect</td>
+        <td scope="row"> </td>
+    </tr>
+    <tr>
+        <th scope="row">Manager</th>
+        <td scope="row"> </td>
+        <td scope="row"> </td>
+        <td scope="row">Solution Architect</td>
+        <td scope="row">Test Architect ​​​​​</td>
+        <td scope="row">​Dynamics 365 / Power Platform Solution Architect</td>
+    </tr>
+    <tr>
+        <th scope="row">Consultant</th>
+        <td scope="row">Innovation Lead</td>
+        <td scope="row">Lead Software Engineer</td>
+        <td scope="row">Technical Architect</td>
+        <td scope="row">Lead Test Engineer<br>Lead NFT Engineer<br>​​​​​Test Manager</td>
+        <td scope="row">Lead Product Specialist</td>
+    </tr>
+    <tr>
+        <th scope="row">Senior Associate</th>
+        <td scope="row"> </td>
+        <td scope="row">Senior Software Engineer<br>Senior Front-End Engineer</td>
+        <td scope="row"> </td>
+        <td scope="row">Senior Test Engineer<br>Senior NFT Engineer​​​​​</td>
+        <td scope="row">​Senior Product Specialist</td>
+    </tr>
+    <tr>
+        <th scope="row">Associate</th>
+        <td scope="row"> </td>
+        <td scope="row">Software Engineer<br>Front-End Engineer</td>
+        <td scope="row"> </td>
+        <td scope="row">Test Engineer​​​​​</td>
+        <td scope="row">​ </td>
+    </tr>
+    <tr>
+        <th scope="row">Trainee</th>
+        <td scope="row"> </td>
+        <td scope="row">Software Engineer</td>
+        <td scope="row"> </td>
+        <td scope="row">Test Engineer​​​​​</td>
+        <td scope="row">​ </td>
+    </tr>
+    <tr>
+        <th scope="row">Apprentice</th>
+        <td scope="row"> </td>
+        <td scope="row">Software Engineer</td>
+        <td scope="row"> </td>
+        <td scope="row"> ​​​​​</td>
+        <td scope="row">​ </td>
+    </tr>
+
+</tbody>
+</table>
+
+
+{% endblock %}
