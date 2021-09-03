@@ -11,7 +11,20 @@ const axios = jest.mock("axios", () => {
 })
 
 const jobRoleRoutes = require('../routes/job-role-route');
-const { getJobRoles } = require("../services/job-role-service");
+const getJobRolesService = require("../services/job-role-service");
+const {getJobRoles} = require("../services/job-role-service");
+
+app.use(express.urlencoded({ extended: false }));
+app.use("/viewjobroles", jobRoleRoutes);
+
+describe("Test the job role route is calling the correct service function", () => {
+  test("Route calls view-job-roles and getJobRoles", async () => {
+    request(app)
+      .get("/")
+      .expect("view-job-roles")
+      .expect(getJobRolesService.getJobRoles());
+  });
+})
 
 app.use(express.urlencoded({ extended: false }));
 app.use("/viewjobroles", jobRoleRoutes);

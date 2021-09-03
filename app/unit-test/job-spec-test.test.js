@@ -11,6 +11,7 @@ const axios = jest.mock("axios", () => {
 })
 
 const { getJobSpec } = require("../services/job-specification-serivce");
+const getJobSpecService = require("../services/job-specification-serivce");
 const jobSpecRoutes = require('../routes/job-specification-route');
 
 app.use(express.urlencoded({ extended: false }));
@@ -21,7 +22,7 @@ describe("Test the job spec route is calling the correct service function", () =
     request(app)
       .get("/")
       .expect("viewjobspecification")
-      .expect(getJobSpec());
+      .expect(getJobSpecService.getJobSpec());
   });
 })
 
