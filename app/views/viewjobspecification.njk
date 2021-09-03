@@ -32,7 +32,7 @@
 
 {% if job_spec.locations and job_spec.locations.length > 0 %}
   {% for job_location in job_spec.locations%}
-    <h3 id = "locations"><i class="fa fa-map-marker" style="font-size:24px;"></i>   {{job_location.name}}</h3>
+    <h3 class = "locations"><i class="fa fa-map-marker" style="font-size:24px;"></i>   {{job_location.name}}</h3>
   {% endfor %}
 {% else %}
     <h2 id = "locations">No Location</h2>

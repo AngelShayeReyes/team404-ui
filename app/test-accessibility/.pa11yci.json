@@ -14,19 +14,45 @@
                 "height": 1024
             }
         },
+
         {
-            "url": "http://localhost:7999/navigation",
+            "url": "http://localhost:7999/viewjobroles",
             "timeout": 50000,
-            "screenCapture": "app/test-accessibility/screenCaptures/mobile_navigation.png",
+            "screenCapture": "app/test-accessibility/screenCaptures/desktop_viewjobroles.png",
             "viewport": {
-                "width": 320,
-                "height": 480,
-                "isMobile": true
+                "width": 1280,
+                "height": 1024
             }
         },
-        "http://localhost:7999/viewjobroles",
-        "http://localhost:7999/viewjobspecification/1",
-        "http://localhost:7999/viewcompetencies",
-        "http://localhost:7999/viewmatrixofroles"
+
+        {
+            "url": "http://localhost:7999/viewjobspecification/1",
+            "timeout": 50000,
+            "screenCapture": "app/test-accessibility/screenCaptures/desktop_viewjobspecification-1.png",
+            "viewport": {
+                "width": 1280,
+                "height": 1024
+            }
+        },
+
+        {
+            "url": "http://localhost:7999/viewcompetencies",
+            "timeout": 50000,
+            "screenCapture": "app/test-accessibility/screenCaptures/desktop_viewcompetencies.png",
+            "viewport": {
+                "width": 1280,
+                "height": 1024
+            }
+        },
+
+        {
+            "url": "http://localhost:7999/viewmatrixofroles",
+            "timeout": 50000,
+            "screenCapture": "app/test-accessibility/screenCaptures/desktop_viewmatrixofroless.png",
+            "viewport": {
+                "width": 1280,
+                "height": 1024
+            }
+        }
     ]
 }
