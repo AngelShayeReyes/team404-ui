@@ -21,7 +21,7 @@ env.addFilter('date', dateFilter);
       <h4><strong>Filter by Contract Type:</strong></h4>
       <form>
       {% for element in current_display %}
-        <label><input type="checkbox" name="jr-contractType" value="{{ element }}" id="{{ element }}" /> {{ element | replace("_", " ") | capitalize}} </label><br>
+        <label><input type="checkbox" name="jr-contractType" value="{{ element }}" id="chkbox-{{ element }}" /> {{ element | replace("_", " ") | capitalize}} </label><br>
       {% endfor %}
       </form>
     {% endif %}
@@ -40,7 +40,7 @@ env.addFilter('date', dateFilter);
       <h4><strong>Filter by Location:</strong></h4>
       <form>
       {% for element in current_display %}
-        <label><input type="checkbox" name="jr-location" value="{{ element }}" id="{{ element }}" /> {{ element }} </label><br>
+        <label><input type="checkbox" name="jr-location" value="{{ element }}" id="chkbox-{{ element }}" /> {{ element }} </label><br>
       {% endfor %}
       </form>
     {% endif %}
@@ -57,7 +57,7 @@ env.addFilter('date', dateFilter);
       <h4><strong>Filter by Capability:</strong></h4>
       <form>
       {% for element in current_display %}
-        <label><input type="checkbox" name="jr-capability" value="{{ element }}" id="{{ element }}" /> {{ element | replace("_", " ") | capitalize}} </label><br>
+        <label><input type="checkbox" name="jr-capability" value="{{ element }}" id="chkbox-{{ element }}" /> {{ element | replace("_", " ") | capitalize}} </label><br>
       {% endfor %}
       </form>
     {% endif %}
@@ -74,7 +74,7 @@ env.addFilter('date', dateFilter);
       <h4><strong>Filter by Band:</strong></h4>
       <form>
       {% for element in current_display %}
-        <label><input type="checkbox" name="jr-band" value="{{ element }}" id="{{ element }}" /> {{ element | replace("_", " ") | capitalize}} </label><br>
+        <label><input type="checkbox" name="jr-band" value="{{ element }}" id="chkbox-{{ element }}" /> {{ element | replace("_", " ") | capitalize}} </label><br>
       {% endfor %}
       </form>
     {% endif %}
