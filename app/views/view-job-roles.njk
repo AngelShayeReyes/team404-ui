@@ -10,32 +10,44 @@ env.addFilter('date', dateFilter);
 <h1 id=page_title>View Job Roles</h1>
 
 <div class="jobRoles-wrap">
-  <h4><strong>Filter by Contract Type:</strong></h4>
-  <form>
-    <label><input type="checkbox" name="jr-contractType" value="full_time" id="full_time" /> Full Time</label><br>
-    <label><input type="checkbox" name="jr-contractType" value="part_time" id="part_time" /> Part Time</label><br> 
-    <label><input type="checkbox" name="jr-contractType" value="contractor" id="contractor" /> Contractor</label>
-  </form>
-  <h4><strong>Filter by Location:</strong></h4>
-  <form>
-    <label><input type="checkbox" name="jr-location" value="London" id="London" /> London </label><br>
-    <label><input type="checkbox" name="jr-location" value="Belfast" id="Belfast" /> Belfast </label><br> 
-    <label><input type="checkbox" name="jr-location" value="Birmingham" id="Birmingham" /> Birmingham </label><br>
-    <label><input type="checkbox" name="jr-location" value="Derry" id="Derry" /> Derry </label><br>
-    <label><input type="checkbox" name="jr-location" value="Toronto" id="Toronto" /> Toronto </label><br>
-    <label><input type="checkbox" name="jr-location" value="Gdansk" id="Gdansk" /> Gdansk </label><br>
-  </form>
-  <h4><strong>Filter by Band:</strong></h4>
-  <form>
-    <label><input type="checkbox" name="jr-band" value="Leadership" id="Leadership" /> Leadership </label><br>
-    <label><input type="checkbox" name="jr-band" value="Principal" id="Principal" /> Principal </label><br> 
-    <label><input type="checkbox" name="jr-band" value="Manager" id="Manager" /> Manager </label><br>
-    <label><input type="checkbox" name="jr-band" value="Consultant" id="Consultant" /> Consultant </label><br>
-    <label><input type="checkbox" name="jr-band" value="Senior_Associate" id="Senior_Associate" /> Senior Associate </label><br>
-    <label><input type="checkbox" name="jr-band" value="Associate" id="Associate" /> Associate </label><br>
-    <label><input type="checkbox" name="jr-band" value="Trainee" id="Trainee" /> Trainee </label><br>
-    <label><input type="checkbox" name="jr-band" value="Apprentice" id="Apprentice" /> Apprentice </label><br>
-  </form>
+  {% if job_roles[0].contractType != null %}
+    <h4><strong>Filter by Contract Type:</strong></h4>
+    <form>
+      {% set current_display = [] %}
+      {% for job_role in job_roles %}
+        {% if not current_display.includes(job_role.contractType) %}
+          {% set current_display = (current_display.push(job_role.contractType), current_display) %}
+          <label><input type="checkbox" name="jr-contractType" value="{{ job_role.contractType }}" id="{{ job_role.contractType }}" /> {{ job_role.contractType | replace("_", " ") | capitalize}} </label><br>
+        {% endif %}
+      {% endfor %}
+    </form>
+  {% endif %}
+  {% if job_roles[0].band.name != null %}
+    <h4><strong>Filter by Location:</strong></h4>
+    <form>
+      {% set current_display = [] %}
+      {% for job_role in job_roles %}
+        {% for location in job_role.locations %}
+          {% if not current_display.includes(location.name) %}
+            {% set current_display = (current_display.push(location.name), current_display) %}
+            <label><input type="checkbox" name="jr-location" value="{{ location.name}}" id="{{ location.name }}" /> {{ location.name }} </label><br>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </form>
+  {% endif %}
+  {% if job_roles[0].band.name != null %}
+    <h4><strong>Filter by Band:</strong></h4>
+    <form>
+      {% set current_display = [] %}
+      {% for job_role in job_roles %}
+        {% if not current_display.includes(job_role.band.name) %}
+          {% set current_display = (current_display.push(job_role.band.name), current_display) %}
+          <label><input type="checkbox" name="jr-band" value="{{ job_role.band.name }}" id="{{ job_role.band.name }}" /> {{ job_role.band.name | replace("_", " ")}} </label><br>
+        {% endif %}
+      {% endfor %}
+    </form>
+  {% endif %}
 </div>
 
 <table class="jobRolesTable" summary="This data table shows the current job roles within Kainos">
