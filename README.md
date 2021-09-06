@@ -26,6 +26,10 @@ First ensure the [API](https://github.com/Chottek/team404-api) is running before
 ```bash
 npm run test-selenium
 ```
-
+### Accessibility tests
+First ensure the [API](https://github.com/Chottek/team404-api) and the application are running before starting the pa11y tests with:
+```bash
+npm run test-accessibilty
+```
 ## API reference
 The API can be found [here](https://github.com/Chottek/team404-api)

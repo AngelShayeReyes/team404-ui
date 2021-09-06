@@ -3,7 +3,11 @@
 {% set title = 'View Job Specification' %}
 
 {% block content  %}
+{% if job_spec.title %}
 <h1 id = "job_name">{{job_spec.title}}</h1>
+{% else %}
+<h1 id = "job_name">No job specification title</h1>
+{% endif %}
 
 {% if job_spec.band %}
 <h2 id = "job_band_level">{{job_spec.band | replace("_", " ")}}</h2>
@@ -28,7 +32,7 @@
 
 {% if job_spec.locations and job_spec.locations.length > 0 %}
   {% for job_location in job_spec.locations%}
-    <h3 id = "locations"><i class="fa fa-map-marker" style="font-size:24px;"></i>   {{job_location.name}}</h3>
+    <h3 class = "locations"><i class="fa fa-map-marker" style="font-size:24px;"></i>   {{job_location.name}}</h3>
   {% endfor %}
 {% else %}
     <h2 id = "locations">No Location</h2>
