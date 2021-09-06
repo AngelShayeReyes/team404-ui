@@ -24,12 +24,14 @@ const jobRoleRoutes = require('./app/routes/job-role-route.js');
 const jobSpecRoutes = require('./app/routes/job-specification-route.js');
 const competenciesRoutes = require('./app/routes/competencies-route.js');
 const matrixOfRolesRoutes = require('./app/routes/matrix-roles-route');
+const addNewRoleRoutes = require('./app/routes/add-new-role-route');
 
 app.use("/navigation", navigationRoute);
 app.use("/viewjobroles", jobRoleRoutes);
 app.use("/viewjobspecification", jobSpecRoutes);
 app.use("/viewcompetencies", competenciesRoutes);
 app.use("/viewmatrixofroles", matrixOfRolesRoutes);
+app.use("/addnewrole", addNewRoleRoutes);
 
 app.get('*', (req, res) => {
     res.render('not-found'); 
