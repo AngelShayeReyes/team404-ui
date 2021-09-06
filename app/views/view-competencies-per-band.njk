@@ -20,7 +20,7 @@
             <table class="green-table" summary="This data table shows competencies per band">
             <thead>
                 <tr>
-                    {% set th = '<th scope="title" colspan=' + competency.indicators.length + '>' + competency.name + '</th>' %}
+                    {% set th = '<th scope="col" colspan=' + competency.indicators.length + '>' + competency.name + '</th>' %}
                     {{th | safe}}
                 </tr>
             </thead>
