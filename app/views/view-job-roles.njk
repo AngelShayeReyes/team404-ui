@@ -99,8 +99,7 @@ env.addFilter('date', dateFilter);
         <tr class="jobRole" data-category="{{ job_role.contractType}} {{ job_role.title }} {% for location in job_role.locations %}{{ location.name }} {% endfor %}{{job_role.band.name}} {{job_role.capability}}">
             <td scope="row"> <a href="/viewjobspecification/{{ job_role.id}}">{{ job_role.title}}</a></td>
             <td scope="row"> 
-                {{ job_role.locations[0].name }} 
-                {% if job_role.locations[1] != null %}, More...{% endif %}
+                {{ job_role.locations[0].name }}{% if job_role.locations[1] != null%}, More...{% endif %}
             </td>
             <td scope="row"> {{ job_role.contractType | replace("_", " ") | capitalize}} </td>
             <td scope="row"> {{ job_role.posted | date("DD MMM YYYY") }} </td>

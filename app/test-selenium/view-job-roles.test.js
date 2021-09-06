@@ -32,7 +32,7 @@ describe('Checkout View Job Roles', function () {
 
     it('Check Location from API is being displayed and entered correctly within the table', async function(){ 
         let innerText = await driver.findElement(By.xpath("/html/body/table/tbody/tr[3]/td[2]")).getText(); 	
-        assert.equal(innerText, 'London , More...');  
+        assert.equal(innerText, 'London, More...');  
     });
 
     after(() => driver && driver.quit());
