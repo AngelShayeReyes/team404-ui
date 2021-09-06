@@ -3,7 +3,7 @@ const assert = require('assert');
 const { json } = require('express');
 const {Builder, Key, By, until} = require('selenium-webdriver');
  
-const url = 'http://localhost:7999/viewjobspecification/1'
+const url = 'http://localhost:7999/viewjobspecification/3'
 const url_jobroles = 'http://localhost:7999/viewjobroles'
 
 describe('Checkout View Job Specificaton', function () {
@@ -36,7 +36,7 @@ describe('Checkout View Job Specificaton', function () {
 
     it('Check locations exists and contains the expected text', async function() {
         let locations = await driver.findElement(By.className("locations")).getText();
-        assert.equal(true, locations.includes('Belfast') || locations.includes('Birmingham') || locations.includes('Gdansk') || locations.includes('London'));              
+        assert.equal(true, locations.includes('Belfast') || locations.includes('Birmingham') || locations.includes('Gdansk') || locations.includes('London') || locations.includes('Toronto'));    
     });
 
     it('Check job description exists', async function() {
@@ -67,7 +67,7 @@ describe('Checkout View Job Specificaton with Job Roles', function () {
     });
 
     it('Check link from job roles to job spec', async function() {
-        await driver.findElement(By.linkText("Head of test job")).click()
+        await driver.findElement(By.linkText("Security Engineer")).click()
         let job_description = await driver.findElement(By.id("job_description"));
         assert.equal(true, job_description != null);              
     });
