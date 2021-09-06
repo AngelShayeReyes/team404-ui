@@ -7,6 +7,10 @@ var env = new nunjucks.Environment();
 env.addFilter('date', dateFilter);
 
 {% block content  %}  
+<div class="homepage-link">
+  <a href="http://localhost:7999/navigation" title="Back to Homepage Link">Back to Homepage</a>
+</div>
+
 <h1 id=page_title>View Job Roles</h1>
 
 <div class="jobRoles-wrap">
