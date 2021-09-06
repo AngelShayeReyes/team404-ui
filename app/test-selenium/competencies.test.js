@@ -52,6 +52,11 @@ describe('Checkout Kainos Competencies for the Engineering Capability', function
         assert.equal(innerText, 'block'); 
     });
 
+    it('Check homepage button link goes back to navigation', async function() {
+        await driver.findElement(By.xpath("/html/body/div[2]/a")).click()    
+        let page_header = await driver.findElement(By.id("page_title")).getText(); 	
+        assert.equal(page_header, 'Kainos Job Application');       
+    });
 
     after(() => driver && driver.quit());
     
