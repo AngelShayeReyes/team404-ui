@@ -12,15 +12,18 @@
     <label for="title" id="titleLabel">Enter title:</label><br>
     <input type="text" id="title"><br><br>
 
-    <label for="band" id="bandLabel">Choose band:</label><br>
+    <label for="band" id="bandLabel">Band:</label><br>
     <select id="band">
-        <option value="Band 1">Band 1</option>
-        <option value="Band 2">Band 2</option>
-        <option value="Band 3">Band 3</option>
+        <option value="none" selected disabled hidden>Select Band</option>
+        {% for band in bands%}
+            {% set band = '<option value="' + band + '">' + band | replace("_", " ") + '</option>' %}
+            {{band | safe}}
+        {% endfor %}
     </select><br><br>
 
-    <label for="capability" id="capabilityLabel">Choose capability:</label><br>
+    <label for="capability" id="capabilityLabel">Capability:</label><br>
     <select id="capability">
+        <option value="none" selected disabled hidden>Select Capability</option>
         <option value="Capability 1">Capability 1</option>
         <option value="Capability 2">Capability 2</option>
         <option value="Capability 3">Capability 3</option>
