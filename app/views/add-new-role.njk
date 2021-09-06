@@ -13,16 +13,22 @@
     <input type="text" id="title" name="title" value="{{data.title}}"><br><br>
 
     <label for="band" id="bandLabel">Band:</label><br>
-    <select id="band">
+    <select id="band" name="band">
+        {% if not data.band %}
         <option value="none" selected disabled hidden>Select Band</option>
+        {% endif %}
         {% for band in bands%}
-            {% set band = '<option value="' + band + '">' + band | replace("_", " ") + '</option>' %}
+            {% if data.band == band %}
+                {% set band = '<option value="' + band + '" selected>' + band | replace("_", " ") + '</option>' %}
+            {% else %}
+                {% set band = '<option value="' + band + '">' + band | replace("_", " ") + '</option>' %}
+            {% endif %}
             {{band | safe}}
         {% endfor %}
     </select><br><br>
 
     <label for="capability" id="capabilityLabel">Capability:</label><br>
-    <select id="capability">
+    <select id="capability" name="capability">
         <option value="none" selected disabled hidden>Select Capability</option>
         <option value="Capability 1">Capability 1</option>
         <option value="Capability 2">Capability 2</option>
