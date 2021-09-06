@@ -41,7 +41,7 @@ describe('Checkout Navigation Page', function () {
     });
 
     it('Check link bannar links to homepage', async function() {
-        await driver.findElement(By.id("Homepage Link")).click()
+        await driver.findElement(By.xpath("/html/body/div[1]/a/img")).click()
         let page_header = await driver.findElement(By.id("page_title")).getText(); 	
         assert.equal(page_header, 'Kainos Job Application'); 
     });

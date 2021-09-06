@@ -3,7 +3,12 @@
 {% set title = 'View Competencies Per Band' %}
 
 {% block content  %}
+<div class="homepage-link">
+  <a href="http://localhost:7999/navigation" title="Back to Homepage Link">Back to Homepage</a>
+</div>
+
 <h1 id=page_title>Kainos Competencies for the Engineering Capability</h1>
+<p> Please click the band level buttons to view the expected Kainos competencies for this band.</p>
 
 {% for band in bands %}
     {% set quote = "'" %}
@@ -14,7 +19,7 @@
     </div>
 
     {% for competency in band.competencies %}
-        {% set div = '<div class="competency-block" id="' + band.band + loop.index + '">' %}
+        {% set div = '<div class="competency-block" id="' + band.band + loop.index + '" style="display: none;">' %}
         {{div | safe}}
             <table class="green-table" summary="This data table shows competencies per band">
             <thead>
@@ -24,12 +29,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
                     {% for indicator in competency.indicators %}
-                        {% set td = '<td scope="row"><b>' + indicator.name + '</b><br>' + indicator.description + '</td>'%}
-                        {{td | safe}}
+                        {% set tr = '<td scope="row"><b>' + indicator.name + '</b><br>' + indicator.description + '</tr>'%}
+                        {{tr | safe}}
                     {% endfor %}
-                </tr>
             </tbody>
             </table>
         </div>
