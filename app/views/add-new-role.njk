@@ -1,12 +1,18 @@
 {% extends "layout.njk" %}
 
 {% block content %}
+
 <h1>Add new role</h1>
+
+{% if errormessage %}
+    <h2 id="errorMessage" style="color:red;">{{ errormessage }}</h2> 
+{% endif %}
+
 <form method="POST" action="addNewRole">
     <label for="title" id="titleLabel">Enter title:</label><br>
     <input type="text" id="title"><br><br>
 
-    <label for="band" id="bandLabel">Choose capability:</label><br>
+    <label for="band" id="bandLabel">Choose band:</label><br>
     <select id="band">
         <option value="Band 1">Band 1</option>
         <option value="Band 2">Band 2</option>
@@ -23,4 +29,5 @@
     <input type="submit" value="Submit" id="submitButton">
 
 </form>
+
 {% endblock %}

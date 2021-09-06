@@ -7,6 +7,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
+    res.locals.errormessage = "Not implemented yet!";
     res.render('add-new-role');
 });
 
