@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "test": "jest --forceExit unit-test",
-    "test-selenium": "NODE_ENV=development gulp test"
+    "test-selenium": "NODE_ENV=development gulp test",
+    "test-accessibilty": "pa11y-ci --config app/test-accessibility/.pa11yci.json"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "mocha": "^9.1.0",
     "nunjucks": "^3.2.3",
     "nunjucks-date-filter": "^0.1.1",
+    "pa11y": "^6.0.1",
     "proxyquire": "^2.1.3",
     "selenium": "^2.20.0",
     "selenium-webdriver": "^4.0.0-beta.4",
@@ -38,6 +40,7 @@
     "supertest": "^6.1.6"
   },
   "devDependencies": {
-    "eslint": "^7.32.0"
+    "eslint": "^7.32.0",
+    "pa11y-ci": "^2.4.2"
   }
 }
