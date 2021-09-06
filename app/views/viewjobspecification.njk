@@ -3,11 +3,6 @@
 {% set title = 'View Job Specification' %}
 
 {% block content  %}
-
-<div class="img-wrap">
-  <img src="../images/KainosHeader.jpeg" alt="Kainos Colur Bannar"/>
-</div>
-
 <h1 id = "job_name">{{job_spec.title}}</h1>
 
 {% if job_spec.band %}
@@ -52,10 +47,19 @@
 <p id = "job_description">No job description</p>
 {% endif %}
 
+{% if job_spec.responsibilities %}
+<h4> Responsiblities
+</h4>
+<p id = "job_responsibilities">
+  <ul>{{job_spec.responsibilities|replace("\n", "<li>")|safe }} </ul>
+</p>
+{% else %}
+<p id = "job_responsibilities">No job responsiblities</p>
+{% endif %}
 
 <h4> Full job specification
 </h4>
-<p> For further information, view the full job specification in <a href= "{{job_spec.sharepoint_link|safe}}" id = "job_sharePointLink">Sharepoint here</a>
+<p> For further information, view the full job specification in <a href= "{{job_spec.sharepointLink|safe}}" id = "job_sharePointLink">Sharepoint here</a>
 </p>
 
 {% endblock %}

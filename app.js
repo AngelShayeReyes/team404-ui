@@ -19,11 +19,13 @@ app.set('view engine', 'njk');
 /*
     Routing
 */
+const navigationRoute = require('./app/routes/navigation');
 const jobRoleRoutes = require('./app/routes/job-role-route.js');
 const jobSpecRoutes = require('./app/routes/job-specification-route.js');
 const competenciesRoutes = require('./app/routes/competencies-route.js');
 const matrixOfRolesRoutes = require('./app/routes/matrix-roles-route');
 
+app.use("/navigation", navigationRoute);
 app.use("/viewjobroles", jobRoleRoutes);
 app.use("/viewjobspecification", jobSpecRoutes);
 app.use("/viewcompetencies", competenciesRoutes);

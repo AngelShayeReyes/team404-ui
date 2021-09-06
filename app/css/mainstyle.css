@@ -47,7 +47,13 @@ ul.tab {
   margin: 0;
 }
 
-div > img {
+.imgWrap{
+  border-radius: 8px;
+  width: 150px;
+  height: 150px;
+}
+
+.img-bannar {
   display: block;
   position: absolute;
   top: 50%;
@@ -55,6 +61,7 @@ div > img {
   min-height: 100%;
   min-width: 100%;
   transform: translate(-50%, -50%);
+  margin: 0;
 }
 
 .header-name-img {
@@ -102,23 +109,23 @@ html, body{
 
 
 /* Table Formatting */
-#green-table {
+.green-table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
-#green-table  td, #green-table  th {
+.green-table  td, #green-table  th {
     border: 1px solid #ddd;
     padding: 8px;
     vertical-align: top
 }
 
-#green-table  tr:nth-child(even){background-color: #f2f2f2;}
+.green-table  tr:nth-child(even){background-color: #f2f2f2;}
 
-#green-table  tr:hover {background-color: #ddd;}
+.green-table  tr:hover {background-color: #ddd;}
 
-#green-table th {
+.green-table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -169,12 +176,6 @@ input[type=submit]:hover {
   background-color: #45a049;
 }
 
-/* div {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-} */
-
 .submit {
   font-weight:bold;
   font-size: 17px;
@@ -207,6 +208,22 @@ input[type=submit]:hover {
   margin-left: 20px;
   margin-top: 0px;
   border-radius: 5px;
-  background-color: #f2f2f2;
   padding: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.columnImg {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  text-align: center;
+}
+
+.rowImg::after {
+  content: "";
+  clear: both;
+  display: table;
 }

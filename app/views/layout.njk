@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Index| {{ title }}</title>
+        <title>{{ title }}</title>
 
         <link rel="stylesheet" type="text/css" href="/css/mainstyle.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13,7 +13,9 @@
     </head>
 
     <body>   
-
+    <div class="img-wrap">
+        <a href="http://localhost:7999/navigation"><img id="Homepage Link" class="img-bannar" src="../images/KainosHeader.jpeg" alt="Kainos Colur Bannar"/></a>
+    </div>
     {% block content %}
 
     {% endblock %}
