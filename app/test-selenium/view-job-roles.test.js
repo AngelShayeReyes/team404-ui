@@ -68,7 +68,6 @@ describe('Checkout Filtering in Job Roles', function () {
         assert.equal(innerText, 'Hide Filters'); 
     });
 
-
     it('Check "Technical Architect" is being shown as no filters are checked', async function(){ 
         let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[4]')).getCssValue("display");
         assert.equal(innerText, 'table-row'); 
@@ -109,6 +108,22 @@ describe('Checkout Filtering in Job Roles', function () {
         await driver.findElement(By.id('chkbox-Manager')).click()
         let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[3]')).getCssValue("display");
         assert.equal(innerText, 'table-row'); 
+    });
+
+    it('Check no results message is shown if "Toronto" and "Leadership" filter is checked', async function(){ 
+        await driver.findElement(By.id('clearallbutton')).click()
+        await driver.findElement(By.id('chkbox-Toronto')).click()
+        await driver.findElement(By.id('chkbox-Leadership')).click()
+        let innerText = await driver.findElement(By.id('noresults')).getCssValue("display");
+        assert.equal(innerText, 'block'); 
+    });
+
+    it('Check table is hidden if "Toronto" and "Leadership" filter is checked', async function(){ 
+        await driver.findElement(By.id('clearallbutton')).click()
+        await driver.findElement(By.id('chkbox-Toronto')).click()
+        await driver.findElement(By.id('chkbox-Leadership')).click()
+        let innerText = await driver.findElement(By.id('jobRolesTable')).getCssValue("display");
+        assert.equal(innerText, 'none'); 
     });
 
     after(() => driver && driver.quit());
