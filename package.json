@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "test": "jest unit-test",
+    "test": "jest --forceExit unit-test",
     "test-selenium": "NODE_ENV=development gulp test",
     "test-accessibilty": "pa11y-ci --config app/test-accessibility/.pa11yci.json"
   },
