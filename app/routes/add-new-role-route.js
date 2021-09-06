@@ -6,4 +6,8 @@ router.get("/", async (req, res) => {
     res.render('add-new-role');
 });
 
+router.post("/", async (req, res) => {
+    res.render('add-new-role');
+});
+
 module.exports = router
