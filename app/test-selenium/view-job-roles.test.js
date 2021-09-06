@@ -47,6 +47,28 @@ describe('Checkout Filtering in Job Roles', function () {
         await driver.get(url);
     });
 
+    it('Check Filters are hidden by default', async function(){ 
+        let innerText = await driver.findElement(By.id('filterblock')).getCssValue("display");
+        assert.equal(innerText, 'none'); 
+    });
+
+    it('Check Filters button is defaulted to state "View Filters"', async function(){ 
+        let innerText = await driver.findElement(By.id('filterbutton')).getAttribute("value");
+        assert.equal(innerText, 'View Filters'); 
+    });
+
+    it('Check Filters are shown when Filter button is clicked', async function(){ 
+        await driver.findElement(By.id('filterbutton')).click()
+        let innerText = await driver.findElement(By.id('filterblock')).getCssValue("display");
+        assert.equal(innerText, 'block'); 
+    });
+
+    it('Check Filters button states "Hide Filters" when filters are being shown', async function(){ 
+        let innerText = await driver.findElement(By.id('filterbutton')).getAttribute("value");
+        assert.equal(innerText, 'Hide Filters'); 
+    });
+
+
     it('Check "Technical Architect" is being shown as no filters are checked', async function(){ 
         let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[4]')).getCssValue("display");
         assert.equal(innerText, 'table-row'); 
