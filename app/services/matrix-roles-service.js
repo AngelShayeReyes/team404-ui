@@ -14,7 +14,7 @@ exports.getBands = async () => {
 
 exports.getJobFamilies = async () => {
     let results;
-    await axios.get('http://localhost:8080/API_ENDPOINT')
+    await axios.get('http://localhost:8080/job-family')
         .then(response => {
             results = response.data;
         })

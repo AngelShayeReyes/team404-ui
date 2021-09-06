@@ -17,8 +17,8 @@ The Lattice below provides a detailed view of jobs by Capability and Management 
 <thead>
     <tr>
         <td scope="col"> </td>
-        {% for job_family in job_families%}
-            <th scope="col">{{job_family.job_family_name}}</th>
+        {% for jobFamilyOnly in jobFamiliesOnly%}
+            <th scope="col">{{jobFamilyOnly.jobFamilyName}}</th>
         {% endfor %}
     </tr>
 </thead>
@@ -26,13 +26,11 @@ The Lattice below provides a detailed view of jobs by Capability and Management 
     {% for band in bands%}
     <tr>
         <th scope="row">{{band.band_name}}</th>
-        {% for job_family in job_families %}
-            {% for job in band.jobs %}
-                {% if loop.index == 1%}
-                    <td scope="row">{% for job_title in band.jobs.job_titles %}{{job_title}}{% endfor %}</td>
-                {% elif job_family.job_family_name == job.job_family_name %}
-                    <td scope="row">{% for job_title in band.jobs.job_titles %}<br>{{job_title}}{% endfor %}</td>
-                {% elif loop.index == band.jobs.length%}
+        {% for jobFamilyOnly in jobFamiliesOnly %}
+            {% for jobFamily in band.jobFamilies %}
+                {% if jobFamilyOnly.jobFamilyName == jobFamily.jobFamilyName %}
+                    <td scope="row">{% for jobTitle in jobFamily.jobTitles %}{% if loop.index == 1%}{{jobTitle}}{% else %}<br>{{jobTitle}}{% endif %}{% endfor %}</td>
+                {% elif loop.index == band.jobFamilies.length%}
                     <td scope="row"> </td>
                 {% endif %}
             {% endfor %}
