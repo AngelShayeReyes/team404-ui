@@ -7,32 +7,160 @@ var env = new nunjucks.Environment();
 env.addFilter('date', dateFilter);
 
 {% block content  %}  
-<h1 id=page_title>View Job Roles</h1>
-<h2>{{job_roles.length}} Results</h2> 
+<div class="homepage-link">
+  <a href="http://localhost:7999/navigation" title="Back to Homepage Link">Back to Homepage</a>
+</div>
 
-<table class="green-table" summary="This data table shows the current job roles within Kainos">
-<thead>
-    <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Location</th>
-        <th scope="col">Contract Type</th>
-        <th scope="col">Posted At</th>
-    </tr>
-</thead>
-<tbody>
+<h1 id=page_title>View Job Roles</h1>
+
+<div class="jobRoles-wrap">
+  <div id="contract-type-checkboxes">
+    {% set current_display = [] %}
     {% for job_role in job_roles %}
-    <tr>
-        <td scope="row"> <a href="/viewjobspecification/{{ job_role.id}}">{{ job_role.title}}</a></td>
-        <td scope="row"> 
-            {{ job_role.locations[0].name }} 
-            {% if job_role.locations[1] != null %}, More...{% endif %}
-        </td>
-        <td scope="row"> {{ job_role.contractType | replace("_", " ") | capitalize}} </td>
-        <td scope="row"> {{ job_role.posted | date("DD MMM YYYY") }} </td>
+      {% if not current_display.includes(job_role.contractType) %}
+        {% set current_display = (current_display.push(job_role.contractType), current_display) %}
+      {% endif %}
     {% endfor %}
-    </tr>
-</tbody>
+    {% if current_display.length >= 2%}
+      <h4><strong>Filter by Contract Type:</strong></h4>
+      <form>
+      {% for element in current_display %}
+        <label><input type="checkbox" name="jr-contractType" value="{{ element }}" id="chkbox-{{ element }}" /> {{ element | replace("_", " ") | capitalize}} </label><br>
+      {% endfor %}
+      </form>
+    {% endif %}
+  </div>
+
+  <div id="location-checkboxes">
+    {% set current_display = [] %}
+    {% for job_role in job_roles %}
+      {% for location in job_role.locations %}
+        {% if not current_display.includes(location.name) %}
+          {% set current_display = (current_display.push(location.name), current_display) %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+    {% if current_display.length >= 2%}
+      <h4><strong>Filter by Location:</strong></h4>
+      <form>
+      {% for element in current_display %}
+        <label><input type="checkbox" name="jr-location" value="{{ element }}" id="chkbox-{{ element }}" /> {{ element }} </label><br>
+      {% endfor %}
+      </form>
+    {% endif %}
+  </div>
+
+  <div id="capability-checkboxes">
+    {% set current_display = [] %}
+    {% for job_role in job_roles %}
+      {% if not current_display.includes(job_role.capability) %}
+        {% set current_display = (current_display.push(job_role.capability), current_display) %}
+      {% endif %}
+    {% endfor %}
+    {% if current_display.length >= 2%}
+      <h4><strong>Filter by Capability:</strong></h4>
+      <form>
+      {% for element in current_display %}
+        <label><input type="checkbox" name="jr-capability" value="{{ element }}" id="chkbox-{{ element }}" /> {{ element | replace("_", " ") | capitalize}} </label><br>
+      {% endfor %}
+      </form>
+    {% endif %}
+  </div>
+
+  <div id="band-checkboxes">
+    {% set current_display = [] %}
+    {% for job_role in job_roles %}
+      {% if not current_display.includes(job_role.band.name) %}
+        {% set current_display = (current_display.push(job_role.band.name), current_display) %}
+      {% endif %}
+    {% endfor %}
+    {% if current_display.length >= 2%}
+      <h4><strong>Filter by Band:</strong></h4>
+      <form>
+      {% for element in current_display %}
+        <label><input type="checkbox" name="jr-band" value="{{ element }}" id="chkbox-{{ element }}" /> {{ element | replace("_", " ") | capitalize}} </label><br>
+      {% endfor %}
+      </form>
+    {% endif %}
+  </div>
+</div>
+
+<table class="jobRolesTable" summary="This data table shows the current job roles within Kainos">
+  <thead>
+      <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Location</th>
+          <th scope="col">Contract Type</th>
+          <th scope="col">Posted At</th>
+      </tr>
+  </thead>
+  <tbody>
+      {% for job_role in job_roles %}
+        <tr class="jobRole" data-category="{{ job_role.contractType}} {{ job_role.title }} {% for location in job_role.locations %}{{ location.name }} {% endfor %}{{job_role.band.name}} {{job_role.capability}}">
+            <td scope="row"> <a href="/viewjobspecification/{{ job_role.id}}">{{ job_role.title}}</a></td>
+            <td scope="row"> 
+                {{ job_role.locations[0].name }} 
+                {% if job_role.locations[1] != null %}, More...{% endif %}
+            </td>
+            <td scope="row"> {{ job_role.contractType | replace("_", " ") | capitalize}} </td>
+            <td scope="row"> {{ job_role.posted | date("DD MMM YYYY") }} </td>
+        </tr>
+      {% endfor %}
+  </tbody>
 </table>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+  var $filterCheckboxes = $('input[type="checkbox"]');
+  var filterFunc = function() {
+
+    var selectedFilters = {};
+
+    // seperating rule for filter name 
+    $filterCheckboxes.filter(':checked').each(function() {
+      if (!selectedFilters.hasOwnProperty(this.name)) {
+        selectedFilters[this.name] = [];
+      }
+      selectedFilters[this.name].push(this.value);
+    });
+
+    // create a collection containing all of the filterable elements
+    var $filteredResults = $('.jobRole');
+
+    // loop over the selected filter name -> (array) values pairs
+    $.each(selectedFilters, function(name, filterValues) {
+
+      // filter each .jobRole element
+      $filteredResults = $filteredResults.filter(function() {
+
+        var matched = false,
+        currentFilterValues = $(this).data('category').split(' ');
+
+        // loop over each category value in the current .jobRole's data-category
+        $.each(currentFilterValues, function(_, currentFilterValue) {
+
+          // if the current category exists in the selected filters array
+          // set matched to true, and stop looping. as we're ORing in each
+          // set of filters, we only need to match once
+
+          if ($.inArray(currentFilterValue, filterValues) != -1) {
+            matched = true;
+            return false;
+            }
+        });
+
+        // if matched is true the current .jobRole element is returned
+        return matched;
+
+      });
+    });
+
+    $('.jobRole').hide().filter($filteredResults).show();
+  }
+
+  $filterCheckboxes.on('change', filterFunc);  
+</script>
 
 {% endblock %}
