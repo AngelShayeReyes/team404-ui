@@ -25,12 +25,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
                     {% for indicator in competency.indicators %}
-                        {% set td = '<td scope="row"><b>' + indicator.name + '</b><br>' + indicator.description + '</td>'%}
-                        {{td | safe}}
+                        {% set tr = '<td scope="row"><b>' + indicator.name + '</b><br>' + indicator.description + '</tr>'%}
+                        {{tr | safe}}
                     {% endfor %}
-                </tr>
             </tbody>
             </table>
         </div>
