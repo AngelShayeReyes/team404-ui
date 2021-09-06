@@ -245,7 +245,7 @@ input[type=submit]:hover {
   margin: 20px;
   margin-top: 0px;
   margin-right: 0px;
-  display: block;
+  display: none;
 }	
 .jobRolesTable {
   font-family: Arial, Helvetica, sans-serif;
@@ -293,6 +293,20 @@ input[type=submit]:hover {
   font-size: 16px;
   color: white;
 }
+#filterbutton:hover {background-color: #059762}
+
+#clearallbutton{
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #04AA6D;
+  border: none;
+  font-size: 16px;
+  color: white;
+  width:100px; 
+  margin-top: 5px;
+  margin-left: 10px;
+  border-radius: 12px;
+}
+#clearallbutton:hover {background-color: #059762}
 
 @media screen and (max-width: 600px) {
   .green-table thead {

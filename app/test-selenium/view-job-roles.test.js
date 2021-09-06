@@ -21,7 +21,7 @@ describe('Checkout View Job Roles', function () {
     });
 
     it('Check Title from API is being displayed and entered correctly within the table', async function(){ 
-        let innerText = await driver.findElement(By.xpath("//table/tbody/tr[2]/td[1]")).getText(); 	
+        let innerText = await driver.findElement(By.xpath("/html/body/table/tbody/tr[1]/td[1]/a")).getText(); 	
         assert.equal(innerText, 'Head of People Operations');  
     });
 
@@ -31,7 +31,7 @@ describe('Checkout View Job Roles', function () {
     });
 
     it('Check Location from API is being displayed and entered correctly within the table', async function(){ 
-        let innerText = await driver.findElement(By.xpath("//table/tbody/tr[1]/td[2]")).getText(); 	
+        let innerText = await driver.findElement(By.xpath("/html/body/table/tbody/tr[3]/td[2]")).getText(); 	
         assert.equal(innerText, 'London , More...');  
     });
 
@@ -48,58 +48,44 @@ describe('Checkout Filtering in Job Roles', function () {
     });
 
     it('Check "Technical Architect" is being shown as no filters are checked', async function(){ 
-        let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[3]')).getCssValue("display");
+        let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[4]')).getCssValue("display");
         assert.equal(innerText, 'table-row'); 
     });
 
-    it('Check "Technical Architect" is not being shown if "London" filter is checked', async function(){ 
-        await driver.findElement(By.xpath('//*[@id="chkbox-London"]')).click()
-        let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[3]')).getCssValue("display");
-        assert.equal(innerText, 'none'); 
-    });
-
-    it('Check "Product Owner" is not being shown if "London and Engineering" filter is checked', async function(){ 
-        await driver.findElement(By.xpath('//*[@id="chkbox-Engineering"]')).click()
-        let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[5]')).getCssValue("display");
-        assert.equal(innerText, 'none'); 
-    });
-
-    it('Check "Test Engineer" is not being shown if "London, Engineer and Senior Associate" filter is checked', async function(){ 
-        await driver.findElement(By.xpath('//*[@id="chkbox-Senior_Associate"]')).click()
-        let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[5]')).getCssValue("display");
-        assert.equal(innerText, 'none'); 
-    });
-
-    it('Check "Senior Software Engineer (Java)" is being shown if "London, Engineer and Senior Associate" filter is checked', async function(){ 
-        let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[6]')).getCssValue("display");
-        assert.equal(innerText, 'table-row');
-    });
-
-    it('Unheck all filters and check if "Head of test job" is being shown', async function(){ 
-        await driver.findElement(By.xpath('//*[@id="chkbox-London"]')).click()
-        await driver.findElement(By.xpath('//*[@id="chkbox-Engineering"]')).click()
-        await driver.findElement(By.xpath('//*[@id="chkbox-Senior_Associate"]')).click()
+    it('Check "Head of People Operations" is not being shown if "London" filter is checked', async function(){ 
+        await driver.findElement(By.id('chkbox-London')).click()
         let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[1]')).getCssValue("display");
+        assert.equal(innerText, 'none'); 
+    });
+
+    it('Check "Test Engineer" is not being shown if "London and Senior Associate" filter is checked', async function(){ 
+        await driver.findElement(By.id('chkbox-Senior_Associate')).click()
+        let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[6]')).getCssValue("display");
+        assert.equal(innerText, 'none'); 
+    });
+
+    it('Check "Senior Software Engineer (Java)" is being shown if "London and Senior Associate" filter is checked', async function(){ 
+        let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[5]')).getCssValue("display");
         assert.equal(innerText, 'table-row');
     });
 
-    it('Check "Technical Architect" is being shown if "Toronto" filter is checked', async function(){ 
-        await driver.findElement(By.xpath('//*[@id="chkbox-Toronto"]')).click()
-        let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[3]')).getCssValue("display");
-        assert.equal(innerText, 'table-row'); 
-    });
-
-    it('Check "Product Owner" is being shown if "Business development and marketing" filter is checked', async function(){ 
-        await driver.findElement(By.xpath('//*[@id="chkbox-Toronto"]')).click()
-        await driver.findElement(By.xpath('//*[@id="chkbox-Business_Development_and_Marketing"]')).click()
-        let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[5]')).getCssValue("display");
-        assert.equal(innerText, 'table-row'); 
-    });
-
-    it('Check "Head of People Operations" is being shown if "Leadership" filter is checked', async function(){ 
-        await driver.findElement(By.xpath('//*[@id="chkbox-Business_Development_and_Marketing"]')).click()
-        await driver.findElement(By.xpath('//*[@id="chkbox-Leadership"]')).click()
+    it('Unheck all filters and check if "Security Engineer" is being shown', async function(){ 
+        await driver.findElement(By.id('clearallbutton')).click()
         let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[2]')).getCssValue("display");
+        assert.equal(innerText, 'table-row');
+    });
+
+    it('Check "Security Engineer" is being shown if "Toronto" filter is checked', async function(){ 
+        await driver.findElement(By.xpath('//*[@id="chkbox-Toronto"]')).click()
+        let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[2]')).getCssValue("display");
+        assert.equal(innerText, 'table-row'); 
+    });
+
+
+    it('Check "Product Owner" is being shown if "Manager" filter is checked', async function(){ 
+        await driver.findElement(By.id('clearallbutton')).click()
+        await driver.findElement(By.id('chkbox-Manager')).click()
+        let innerText = await driver.findElement(By.xpath('/html/body/table/tbody/tr[3]')).getCssValue("display");
         assert.equal(innerText, 'table-row'); 
     });
 
