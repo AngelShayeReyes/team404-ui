@@ -85,7 +85,7 @@ env.addFilter('date', dateFilter);
   </div>
 </div>
 
-<table class="jobRolesTable" summary="This data table shows the current job roles within Kainos">
+<table id="jobRolesTable" summary="This data table shows the current job roles within Kainos" style="display: block;">
   <thead>
       <tr>
           <th scope="col">Title</th>
@@ -108,6 +108,10 @@ env.addFilter('date', dateFilter);
   </tbody>
 </table>
 
+<div id="noresults" style="display: none;">
+There are no results for this search.
+</div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -123,6 +127,7 @@ env.addFilter('date', dateFilter);
         selectedFilters[this.name] = [];
       }
       selectedFilters[this.name].push(this.value);
+      document.getElementById("jobRolesTable").style.display = "block";
     });
 
     // create a collection containing all of the filterable elements
@@ -157,6 +162,13 @@ env.addFilter('date', dateFilter);
     });
 
     $('.jobRole').hide().filter($filteredResults).show();
+
+    if($('.jobRole').children(':visible').length == 0) {
+      document.getElementById("noresults").style.display = "block";
+      document.getElementById("jobRolesTable").style.display = "none";
+    } else {
+      document.getElementById("noresults").style.display = "none";
+    }
   }
 
   $filterCheckboxes.on('change', filterFunc); 
@@ -173,17 +185,17 @@ env.addFilter('date', dateFilter);
 </script>
 
 <script>
-function showFilterFunc() {
-  var x = document.getElementById("filterblock");
-  var elem = document.getElementById("filterbutton");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-    elem.value = 'Hide Filters';
-  } else {
-    x.style.display = "none";
-    elem.value = 'View Filters';
+  function showFilterFunc() {
+    var x = document.getElementById("filterblock");
+    var elem = document.getElementById("filterbutton");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+      elem.value = 'Hide Filters';
+    } else {
+      x.style.display = "none";
+      elem.value = 'View Filters';
+    }
   }
-}
 </script>
 
 
