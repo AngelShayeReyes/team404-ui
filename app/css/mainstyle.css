@@ -126,7 +126,7 @@ html, body{
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #04AA6D;
+    background-color: #498205;
     color: white;
 }
 
@@ -152,7 +152,7 @@ html, body{
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
-  background-color: #04AA6D;
+  background-color: #498205;
   border-color:#ddd;
   color: white;
 }
@@ -182,7 +182,7 @@ input[type=submit]:hover {
 
 /* Competency Button */
 .competency-button {
-  background-color: #04AA6D;
+  background-color: #498205;
   border: none;
   color: white;
   text-align: center;
@@ -199,7 +199,7 @@ input[type=submit]:hover {
   height: 50px;
   }
 
-.competency-button:hover {background-color: #038d5a}
+.competency-button:hover {background-color: #498205}
 
 .competency-block {
   margin-right: 20px;
