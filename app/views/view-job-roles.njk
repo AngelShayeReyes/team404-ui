@@ -9,7 +9,9 @@ env.addFilter('date', dateFilter);
 {% block content  %}  
 <h1 id=page_title>View Job Roles</h1>
 
-<div class="jobRoles-wrap">
+<button id="filterbutton" onclick="myFunction()">View Filters</button>
+
+<div class="jobRoles-wrap" id="filterblock">
   <div id="contract-type-checkboxes">
     {% set current_display = [] %}
     {% for job_role in job_roles %}
@@ -158,5 +160,17 @@ env.addFilter('date', dateFilter);
 
   $filterCheckboxes.on('change', filterFunc);  
 </script>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("filterblock");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
 
 {% endblock %}
