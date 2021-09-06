@@ -13,7 +13,11 @@ env.addFilter('date', dateFilter);
 
 <h1 id=page_title>View Job Roles</h1>
 
-<div class="jobRoles-wrap">
+<input onclick="showFilterFunc()" type="button" value="View Filters" id="filterbutton"></input>
+
+<div class="jobRoles-wrap" id="filterblock" style="display: none;">
+  <input onclick="clearallbuttonFunc()" type="button" value="Clear All" id="clearallbutton"></input>
+
   <div id="contract-type-checkboxes">
     {% set current_display = [] %}
     {% for job_role in job_roles %}
@@ -85,7 +89,7 @@ env.addFilter('date', dateFilter);
   </div>
 </div>
 
-<table class="jobRolesTable" summary="This data table shows the current job roles within Kainos">
+<table id="jobRolesTable" summary="This data table shows the current job roles within Kainos" style="display: block;">
   <thead>
       <tr>
           <th scope="col">Title</th>
@@ -99,8 +103,7 @@ env.addFilter('date', dateFilter);
         <tr class="jobRole" data-category="{{ job_role.contractType}} {{ job_role.title }} {% for location in job_role.locations %}{{ location.name }} {% endfor %}{{job_role.band.name}} {{job_role.capability}}">
             <td scope="row"> <a href="/viewjobspecification/{{ job_role.id}}">{{ job_role.title}}</a></td>
             <td scope="row"> 
-                {{ job_role.locations[0].name }} 
-                {% if job_role.locations[1] != null %}, More...{% endif %}
+                {{ job_role.locations[0].name }}{% if job_role.locations[1] != null%}, More...{% endif %}
             </td>
             <td scope="row"> {{ job_role.contractType | replace("_", " ") | capitalize}} </td>
             <td scope="row"> {{ job_role.posted | date("DD MMM YYYY") }} </td>
@@ -108,6 +111,10 @@ env.addFilter('date', dateFilter);
       {% endfor %}
   </tbody>
 </table>
+
+<div id="noresults" style="display: none;">
+There are no results for this search.
+</div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -124,6 +131,7 @@ env.addFilter('date', dateFilter);
         selectedFilters[this.name] = [];
       }
       selectedFilters[this.name].push(this.value);
+      document.getElementById("jobRolesTable").style.display = "block";
     });
 
     // create a collection containing all of the filterable elements
@@ -158,9 +166,43 @@ env.addFilter('date', dateFilter);
     });
 
     $('.jobRole').hide().filter($filteredResults).show();
+
+    if($('.jobRole').children(':visible').length == 0) {
+      document.getElementById("noresults").style.display = "block";
+      document.getElementById("jobRolesTable").style.display = "none";
+    } else {
+      document.getElementById("noresults").style.display = "none";
+    }
   }
 
-  $filterCheckboxes.on('change', filterFunc);  
+  $filterCheckboxes.on('change', filterFunc); 
+  function clearallbuttonFunc() {
+    var c = document.getElementById('filterblock').getElementsByTagName('input');
+    for (var i = 0; i < c.length; i++) {
+        if (c[i].type == 'checkbox') {
+            c[i].checked = false;
+        }
+    }
+    $('.jobRole').show();
+    document.getElementById("jobRolesTable").style.display = "block";
+    document.getElementById("noresults").style.display = "none";
+  }
+
 </script>
+
+<script>
+  function showFilterFunc() {
+    var x = document.getElementById("filterblock");
+    var elem = document.getElementById("filterbutton");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+      elem.value = 'Hide Filters';
+    } else {
+      x.style.display = "none";
+      elem.value = 'View Filters';
+    }
+  }
+</script>
+
 
 {% endblock %}

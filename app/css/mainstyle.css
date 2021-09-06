@@ -245,21 +245,22 @@ input[type=submit]:hover {
   margin: 20px;
   margin-top: 0px;
   margin-right: 0px;
+  display: none;
 }	
-.jobRolesTable {
+#jobRolesTable {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   float:left;
   width:70%;
-  margin-top:50px;
+  margin:20px;
 }
 
-.jobRolesTable  td, .jobRolesTable  th {
+#jobRolesTable  td, #jobRolesTable  th {
   border: 1px solid #ddd;
   padding: 8px;
   vertical-align: top
 }
-.jobRolesTable div {
+#jobRolesTable div {
   float:left;
   width:90%;
   height:68px;
@@ -270,14 +271,47 @@ input[type=submit]:hover {
   position:relative;
 }	
 
-.jobRolesTable  tr:hover {background-color: #ddd;}
+#jobRolesTable  tr:hover {background-color: #ddd;}
 
-.jobRolesTable th {
+#jobRolesTable th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   background-color: #04AA6D;
   color: white;
+}
+
+#filterbutton{
+  font-family: Arial, Helvetica, sans-serif;
+  display: block;
+  margin: 30px;
+  margin-bottom: 0px;
+  width:20%;
+  background-color: #04AA6D;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  color: white;
+}
+#filterbutton:hover {background-color: #059762}
+
+#clearallbutton{
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #04AA6D;
+  border: none;
+  font-size: 16px;
+  color: white;
+  width:100px; 
+  margin-top: 5px;
+  margin-left: 10px;
+  border-radius: 12px;
+}
+#clearallbutton:hover {background-color: #059762}
+
+
+#noresults {
+  margin: 0 0 0 30px;
+  float:left;
 }
 
 .homepage-link {
@@ -289,7 +323,7 @@ input[type=submit]:hover {
 }
 
 @media screen and (max-width: 600px) {
-  table thead {
+  .green-table thead {
     border-collapse: collapse;
     padding-top: 12px;
     padding-bottom: 12px;
@@ -299,12 +333,12 @@ input[type=submit]:hover {
     font-size: .9em;
   }
   
-  table td {
+  .green-table td {
     display: block;
     font-size: .9em;
   }
   
-  table td::before {
+  .green-table td::before {
     content: attr(data-label);
     float: left;
     font-weight: bold;
@@ -317,7 +351,7 @@ input[type=submit]:hover {
     height: 25px;
   }
 
-  tr:hover {background-color: rgb(255, 255, 255);}
+  .green-table tr:hover {background-color: rgb(255, 255, 255);}
   
   h1 {
     font-size: 1.5em;
@@ -334,5 +368,11 @@ input[type=submit]:hover {
     text-align: center;
   }
 
+  .jobRoles-wrap {
+    width: 100%;
+    padding: 50px;
+    background-color: #ebebeb;
+    margin: 20px;
+  }
 
 } 
