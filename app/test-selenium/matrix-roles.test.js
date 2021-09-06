@@ -20,6 +20,11 @@ describe('Checkout View Matrix of Roles', function () {
         assert.equal(page_header, 'Engineering Capability');              
     });
 
+    it('Check table exists', async function() {
+        let table = await driver.findElement(By.id("us007-table"));
+        assert.equal(true, table != null);              
+    });
+    
     it('Check Job Family from API is being displayed and entered correctly within the table', async function(){ 
         let innerText = await driver.findElement(By.xpath("//table/thead/tr[1]/th[1]")).getText(); 	
         assert.equal(innerText, 'Engineering Strategy and Planning');  
