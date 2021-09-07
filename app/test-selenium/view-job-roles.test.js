@@ -6,6 +6,46 @@ const script = require('jest');
  
 const url = 'http://localhost:7999/viewjobroles'
 
+describe('Checkout Deleting Function in Job Roles', function () {
+    let driver;
+
+    before(async function() {
+        driver = await new Builder().forBrowser('chrome').build();
+        await driver.get(url);
+    });
+
+    it('Check Delete button gives a popup warning for "Head of People Operations"', async function(){ 
+        await driver.findElement(By.xpath('//*[@id="jobRolesTable"]/tbody/tr[2]/td[5]/button')).click();
+        let popupText = await driver.switchTo().alert().getText();
+        assert.equal(popupText, 'Are you sure you would like to delete the Head of People Operations role?'); 
+    });
+
+    it('Check cancelling Delete button gives a confirmation message for "Head of People Operations"', async function(){ 
+        await driver.switchTo().alert().dismiss();
+        let innerText = await driver.findElement(By.id('deleteconfirmation')).getText(); 	
+        assert.equal(innerText, 'Head of People Operations will not be deleted'); 
+    });
+
+    it('Check "Head of test job" is the first row', async function(){ 
+        let innerText = await driver.findElement(By.xpath('//*[@id="jobRolesTable"]/tbody/tr[1]/td[1]/a')).getText(); 	
+        assert.equal(innerText, 'Head of test job'); 
+    });
+
+    it('Check Delete button gives a popup warning for "Head of test job"', async function(){ 
+        await driver.findElement(By.xpath('//*[@id="jobRolesTable"]/tbody/tr[1]/td[5]/button')).click();
+        let popupText = await driver.switchTo().alert().getText();
+        assert.equal(popupText, 'Are you sure you would like to delete the Head of test job role?'); 
+    });
+
+    it('Check that "Head of test job" is no longer in the table', async function(){ 
+        await driver.switchTo().alert().accept();
+        let innerText = await driver.findElement(By.xpath('//*[@id="jobRolesTable"]/tbody/tr[1]/td[1]/a')).getText(); 	
+        assert.equal(innerText, 'Head of People Operations'); 
+    });
+
+    after(() => driver && driver.quit());
+})
+
 describe('Checkout View Job Roles', function () {
     let driver;
 

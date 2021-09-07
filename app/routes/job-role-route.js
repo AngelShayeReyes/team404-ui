@@ -6,9 +6,8 @@ router.get("/", async (req, res) => {
     res.render('view-job-roles', {job_roles: await jobRoleService.getJobRoles()});
 });
 
-router.delete("remove-role/:jobRoleID", async (req, res) => {
-    res.render('view-job-roles', {  job_roles: await jobRoleService.getJobRoles(), 
-                                    delete_job_role: await jobRoleService.deleteJobRole(req.params.jobRoleID)});
+router.delete("/removerole/:jobId", async (req, res) => {
+    res.render('view-job-roles', {delete_job_role: await jobRoleService.deleteJobRole(req.params.jobId)});
 })
 
 module.exports = router

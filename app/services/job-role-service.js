@@ -8,20 +8,18 @@ exports.getJobRoles = async () => {
         })
         .catch(error => {
             console.log(error);
-            //res.render('error-page', { error_code: error.response.data} )
         });
     return results;
 }
 
-exports.deleteJobRole = async (jobRoleID) => {
+exports.deleteJobRole = async (jobId) => {
     let results;
-    await axios.delete('http://localhost:8080/remove-role/:id'+encodeURIComponent(jobRoleID))
+    await axios.delete('http://localhost:8080/remove-role/' + jobId)
         .then(response => {
             results = response.data;
         })
         .catch(error => {
             console.log(error);
-            //res.render('error-page', { error_code: error.response.data} )
         });
     return results;
 }

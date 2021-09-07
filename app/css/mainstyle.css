@@ -277,7 +277,7 @@ input[type=submit]:hover {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #04AA6D;
+  background-color: #498205;
   color: white;
 }
 
@@ -287,17 +287,17 @@ input[type=submit]:hover {
   margin: 30px;
   margin-bottom: 0px;
   width:20%;
-  background-color: #04AA6D;
+  background-color: #498205;
   border-radius: 12px;
   border: none;
   font-size: 16px;
   color: white;
 }
-#filterbutton:hover {background-color: #059762}
+#filterbutton:hover {background-color: #3b6804;}
 
 #clearallbutton{
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #04AA6D;
+  background-color: #498205;
   border: none;
   font-size: 16px;
   color: white;
@@ -306,7 +306,7 @@ input[type=submit]:hover {
   margin-left: 10px;
   border-radius: 12px;
 }
-#clearallbutton:hover {background-color: #059762}
+#clearallbutton:hover {background-color: #3b6804;}
 
 
 #noresults {
@@ -315,12 +315,17 @@ input[type=submit]:hover {
 }
 
 .homepage-link {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 50px;
+  margin-left: 20px;
   text-align: right;
 }
+
+.icon {
+  position: relative;
+}
+
 
 @media screen and (max-width: 600px) {
   .green-table thead {
