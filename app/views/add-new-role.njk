@@ -9,8 +9,8 @@
 {% endif %}
 
 <form method="POST" action="addNewRole">
-    <label for="title" id="titleLabel">Enter title:</label><br>
-    <input type="text" id="title" name="title" value="{{data.title}}"><br><br>
+    <label for="title" id="titleLabel">Title:</label><br>
+    <input type="text" id="title" name="title" placeholder="Enter Title" value="{{data.title}}"><br><br>
 
     <label for="band" id="bandLabel">Band:</label><br>
     <select id="band" name="band">
@@ -34,6 +34,9 @@
         <option value="Capability 2">Capability 2</option>
         <option value="Capability 3">Capability 3</option>
     </select><br><br>
+
+    <label for="description" id="descriptionLabel">Description:</label><br>
+    <input type="text" id="description" name="description" placeholder="Enter Description" value="{{data.description}}"><br><br>
 
     <input type="submit" value="Submit" id="submitButton">
 
