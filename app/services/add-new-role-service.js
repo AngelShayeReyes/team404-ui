@@ -10,7 +10,7 @@ exports.addNewRole = async (newRole) => {
         })
         .catch(error => {
             status = error;
-            console.error(error)
+            //console.error(error)
         })
     return status;
 }
@@ -18,6 +18,18 @@ exports.addNewRole = async (newRole) => {
 exports.getAllBands = async () => {
     let results;
     await axios.get('http://localhost:8080/bandnames')
+        .then(response => {
+            results = response.data;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    return results;
+}
+
+exports.getAllLocations = async () => {
+    let results;
+    await axios.get('http://localhost:8080/locations')
         .then(response => {
             results = response.data;
         })

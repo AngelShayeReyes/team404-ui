@@ -73,8 +73,20 @@
         <option value="Capability 3">Capability 3</option>
     </select><br><br>
 
+    <label for="locations" id="locationsLabel">Locations:</label><br>
+    {% for location in locations %}
+        {% set checkbox = '<input type="checkbox" id="location' + loop.index +'" name="location'+loop.index + '" value='+ location.name+ '>'%}
+        {% set checkboxLabel = '<label for="location' + loop.index + '">' + location.name +'</label><br>'%}
+        {{checkbox | safe}}
+        {{checkboxLabel | safe}}
+    {% endfor %}
+    <br>
+
     <label for="description" id="descriptionLabel">Description:</label><br>
     <input type="text" id="description" name="description" placeholder="Enter Description" value="{{data.description}}"><br><br>
+
+    <label for="responsibilities" id="responsibilitiesLabel">Responsibilities:</label><br>
+    <input type="text" id="responsibilities" name="responsibilities" placeholder="Enter Responsibilities" value="{{data.responsibilities}}"><br><br>
 
     <label for="sharepointLink" id="sharepointLinkLabel">Sharepoint Link:</label><br>
     <input type="text" id="sharepointLink" name="sharepointLink" placeholder="Enter Sharepoint Link" value="{{data.sharepointLink}}"><br><br>
