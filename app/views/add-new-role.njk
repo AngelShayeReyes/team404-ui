@@ -21,6 +21,35 @@
     <label for="title" id="titleLabel">Title:</label><br>
     <input type="text" id="title" name="title" placeholder="Enter Title" value="{{data.title}}"><br><br>
 
+    <label for="contractType" id="contractTypeLabel">Contract Type:</label><br>
+    <select id="contractType" name="contractType">
+        {% if not data.contractType %}
+        <option value="none" selected disabled hidden>Select Contract Type</option>
+        {% endif %}
+
+        {% if data.contractType == 'full_time' %}
+            {% set contract = '<option value="' + data.contractType + '" selected>Full Time</option>' %}
+            {{contract | safe}}
+        {% else %}
+            <option value="full_time">Full Time</option>
+        {% endif %}
+
+        {% if data.contractType == 'part_time' %}
+            {% set contract = '<option value="' + data.contractType + '" selected>Part Time</option>' %}
+            {{contract | safe}}
+        {% else %}
+            <option value="part_time">Part Time</option>
+        {% endif %}
+
+        {% if data.contractType == 'consultant' %}
+            {% set contract = '<option value="' + data.contractType + '" selected>Consultant</option>' %}
+            {{contract | safe}}
+        {% else %}
+            <option value="consultant">Consultant</option>
+        {% endif %}
+
+    </select><br><br>
+
     <label for="band" id="bandLabel">Band:</label><br>
     <select id="band" name="band">
         {% if not data.band %}
