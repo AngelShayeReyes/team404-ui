@@ -66,12 +66,10 @@
     </select><br><br>
 
     <label for="capability" id="capabilityLabel">Capability:</label><br>
-    <select id="capability" name="capability">
-        <option value="none" selected disabled hidden>Select Capability</option>
-        <option value="Capability 1">Capability 1</option>
-        <option value="Capability 2">Capability 2</option>
-        <option value="Capability 3">Capability 3</option>
-    </select><br><br>
+    <input type="text" id="capability" name="capability" placeholder="Enter Capability" value="{{data.capability}}"><br><br>
+
+    <label for="jobFamily" id="jobFamilyLabel">Job Family:</label><br>
+    <input type="text" id="jobFamily" name="jobFamily" placeholder="Enter Job Family" value="{{data.jobFamily}}"><br><br>
 
     <label for="locations" id="locationsLabel">Locations:</label><br>
     {% for location in locations %}
