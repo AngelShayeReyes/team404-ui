@@ -26,20 +26,19 @@ describe('Checkout View Matrix of Roles', function () {
     });
     
     it('Check Job Family from API is being displayed and entered correctly within the table', async function(){ 
-        let innerText = await driver.findElement(By.xpath("//table/thead/tr[1]/th[1]")).getText(); 	
+        let innerText = await driver.findElement(By.xpath("//*[@id=\"us007-table\"]/thead/tr/th[1]")).getText(); 	
         assert.equal(innerText, 'Engineering Strategy and Planning');  
- 
     });
 
     it('Check Band Level from API is being displayed and entered correctly within the table', async function(){ 
-        let innerText = await driver.findElement(By.xpath("//table/tbody/tr[1]/th[1]")).getText(); 	
-        assert.equal(innerText, 'Leadership Community');  
+        let innerText = await driver.findElement(By.xpath("//*[@id=\"us007-table\"]/tbody/tr[1]/th")).getText(); 	
+        assert.equal(innerText, 'Executive');  
  
     });
 
     it('Check Data from API is being displayed and entered correctly within the table', async function(){ 
-        let innerText = await driver.findElement(By.xpath("//table/tbody/tr[2]/td[3]")).getText(); 	
-        assert.equal(innerText, 'Principal Architect');  
+        let innerText = await driver.findElement(By.xpath("//*[@id=\"us007-table\"]/tbody/tr[1]/td[1]")).getText(); 	
+        assert.equal(innerText, '');  
  
     });
 
