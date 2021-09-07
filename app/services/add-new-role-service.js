@@ -17,7 +17,7 @@ exports.addNewRole = async (newRole) => {
 
 exports.getAllBands = async () => {
     let results;
-    await axios.get('http://localhost:8080/bands')
+    await axios.get('http://localhost:8080/bandnames')
         .then(response => {
             results = response.data;
         })
