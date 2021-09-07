@@ -29,8 +29,14 @@ router.post("/", async (req, res) => {
         sharepointLink: req.body.sharepointLink
     }
 
-    let status = await addNewRoleService.addNewRole(newRole);
-    res.render('add-new-role', {bands: await addNewRoleService.getAllBands(), locations: locations, data: req.body, status: status});
+    if (newRole.title && newRole.description && newRole.contractType && newRole.locations.length > 0 
+        && newRole.capability && newRole.responsibilities && newRole.band && newRole.jobFamily && newRole.sharePointLink) {
+        let status = await addNewRoleService.addNewRole(newRole);
+        res.render('add-new-role', {bands: await addNewRoleService.getAllBands(), locations: locations, data: req.body, status: status});
+    } else {
+        res.locals.errormessage = "Empty fields!";
+        res.render('add-new-role', {bands: await addNewRoleService.getAllBands(), locations: locations, data: req.body});
+    }
     
     console.log(newRole)
 });
