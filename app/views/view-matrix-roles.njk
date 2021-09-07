@@ -8,35 +8,25 @@
 </div>
 <h1 id=page_title>Engineering Capability</h1>
 
-<p>
-The Lattice below provides a detailed view of jobs by Capability and Management Level.
-<ul class="tab">
-    <li>Management Levels are shown in the first column. </li>
-    <li>Job families are displayed along the top row - these are sub-groups within capabilities that group people by further skills and competencies. </li> 
-</ul>
-</p>
-
 <table id="us007-table" summary="This data table shows the roles within the engineering capability">
 <thead>
     <tr>
         <td scope="col"> </td>
-        {% for jobFamilyOnly in jobFamiliesOnly%}
-            <th scope="col">{{jobFamilyOnly.jobFamilyName}}</th>
+        {% for jobFamily in matrix[0].jobFamilies %}
+            <th scope="col">{{jobFamily.jobFamilyName}}</th>
         {% endfor %}
     </tr>
 </thead>
 <tbody>
-    {% for band in bands%}
+    {% for band in matrix%}
     <tr>
-        <th scope="row">{{band.band_name}}</th>
-        {% for jobFamilyOnly in jobFamiliesOnly %}
-            {% for jobFamily in band.jobFamilies %}
-                {% if jobFamilyOnly.jobFamilyName == jobFamily.jobFamilyName %}
-                    <td scope="row">{% for jobTitle in jobFamily.jobTitles %}{% if loop.index == 1%}{{jobTitle}}{% else %}<br>{{jobTitle}}{% endif %}{% endfor %}</td>
-                {% elif loop.index == band.jobFamilies.length%}
-                    <td scope="row"> </td>
-                {% endif %}
-            {% endfor %}
+        <th scope="row">{{band.bandName | replace("_", " ")}}</th>
+        {% for jobFamily in band.jobFamilies%}
+            {% if jobFamily.jobTitles.length > 0 %}
+                <td scope="row">{% for jobTitle in jobFamily.jobTitles %}{% if loop.index == 1%}{{jobTitle | replace("_", " ")}}{% else %}<br>{{jobTitle | replace("_", " ")}}{% endif %}{% endfor %}</td>
+            {% else %}
+                <td scope="row"> </td>
+            {% endif %}
         {% endfor %}
     </tr>
     {% endfor %}
