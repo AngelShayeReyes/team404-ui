@@ -8,6 +8,15 @@
     <h2 id="errorMessage" style="color:red;">{{ errormessage }}</h2> 
 {% endif %}
 
+{% if status %}
+    {% set regExp = r/^Error.*/g %}
+    {% if regExp.test(status) %}
+        <h2 id="status" style="color:red;">{{ status }}</h2>
+    {% else %}
+        <h2 id="status">{{ status }}</h2> 
+    {% endif %}
+{% endif %}
+
 <form method="POST" action="addNewRole">
     <label for="title" id="titleLabel">Title:</label><br>
     <input type="text" id="title" name="title" placeholder="Enter Title" value="{{data.title}}"><br><br>
