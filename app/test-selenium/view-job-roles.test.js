@@ -39,6 +39,7 @@ describe('Checkout Deleting Function in Job Roles', function () {
 
     it('Check that "Head of test job" is no longer in the table', async function(){ 
         await driver.switchTo().alert().accept();
+        await driver.navigate().refresh();
         let innerText = await driver.findElement(By.xpath('//*[@id="jobRolesTable"]/tbody/tr[1]/td[1]/a')).getText(); 	
         assert.equal(innerText, 'Head of People Operations'); 
     });

@@ -85,7 +85,7 @@ env.addFilter('date', dateFilter);
   </div>
 </div>
 
-<table id="jobRolesTable" summary="This data table shows the current job roles within Kainos" style="display: block;">
+<table id="jobRolesTable" summary="This data table shows the current job roles within Kainos" style="visibility: visible;">
   <thead>
       <tr>
           <th scope="col">Title</th>
@@ -167,7 +167,7 @@ There are no results for this search.
 
     if($('.jobRole').children(':visible').length == 0) {
       document.getElementById("noresults").style.display = "block";
-      document.getElementById("jobRolesTable").style.display = "none";
+      document.getElementById("jobRolesTable").style.visibility = "hidden";
     } else {
       document.getElementById("noresults").style.display = "none";
     }
@@ -182,7 +182,7 @@ There are no results for this search.
         }
     }
     $('.jobRole').show();
-    document.getElementById("jobRolesTable").style.display = "block";
+    document.getElementById("jobRolesTable").style.display = "visible";
     document.getElementById("noresults").style.display = "none";
   }
 
