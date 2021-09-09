@@ -19,7 +19,7 @@
 <p> Please click the capability buttons to view the related job families.</p>
 {%for capability in current_display%} 
     <div>
-        <button class="competency-button" onclick="expandFunction('{{capability}}')"> {{capability}} </button>
+        <button class="competency-button" onclick="expandFunction('{{capability}}')"> {{capability | replace("_", " ") }} </button>
     </div>
 
     {% set div = '<div class="competency-block" id="' + capability + '" style="display: none;">' %}
