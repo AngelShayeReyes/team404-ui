@@ -3,7 +3,8 @@ const express = require("express");
 const app = express();
 
 const mockAxios = {
-    get: jest.fn()
+    get: jest.fn(),
+    delete: jest.fn()
 };
 
 const axios = jest.mock("axios", () => {
@@ -13,6 +14,7 @@ const axios = jest.mock("axios", () => {
 const jobRoleRoutes = require('../routes/job-role-route');
 const getJobRolesService = require("../services/job-role-service");
 const {getJobRoles} = require("../services/job-role-service");
+const {deleteJobRole} = require("../services/job-role-service");
 
 app.use(express.urlencoded({ extended: false }));
 app.use("/viewjobroles", jobRoleRoutes);
@@ -26,7 +28,16 @@ describe("Test the job role route is calling the correct service function", () =
   });
 })
 
-describe("Test the job roles service endpoint", () => {
+describe("Test the job role delete route is calling the correct service function", () => {
+  test("Route calls view-job-roles and deleteJobRole", async () => {
+    request(app)
+      .get("/removerole/:jobId")
+      .expect("view-job-roles")
+      .expect(getJobRolesService.deleteJobRole());
+  });
+})
+
+describe("Test job role service - get", () => {
     
     test("The results should return job role list", async () => {
         let expected = {
@@ -114,3 +125,26 @@ describe("Test the job roles service endpoint", () => {
     })
 
 })
+
+describe("Test job role service - delete", () => {
+  test("The results should return status code 200", async () => {
+      const expected = {
+          statusCode: 200
+      }
+      mockAxios.delete.mockImplementation(() => {
+          return Promise.resolve(expected);
+      });
+      let results = await deleteJobRole(1);
+      expect(results).toBe(expected.data);
+      expect(mockAxios.delete).toHaveBeenCalledWith('http://localhost:8080/remove-role/1');
+  });
+
+  test("The results should be undefined", async () => {
+      mockAxios.delete.mockImplementation(() => {
+          return Promise.reject();
+      });
+      let results = await deleteJobRole(2);
+      expect(results).toBe(undefined);
+      expect(mockAxios.delete).toHaveBeenCalledWith('http://localhost:8080/remove-role/2');
+  });
+});

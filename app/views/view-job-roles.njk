@@ -7,11 +7,14 @@ var env = new nunjucks.Environment();
 env.addFilter('date', dateFilter);
 
 {% block content  %}  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div class="homepage-link">
   <a href="http://localhost:7999/navigation" title="Back to Homepage Link">Back to Homepage</a>
 </div>
 
-<h1 id=page_title>View Job Roles</h1>
+<h1 id="page_title">View Job Roles</h1>
 
 <input onclick="showFilterFunc()" type="button" value="View Filters" id="filterbutton"></input>
 
@@ -27,11 +30,9 @@ env.addFilter('date', dateFilter);
     {% endfor %}
     {% if current_display.length >= 2%}
       <h4><strong>Filter by Contract Type:</strong></h4>
-      <form>
       {% for element in current_display %}
         <label><input type="checkbox" name="jr-contractType" value="{{ element }}" id="chkbox-{{ element }}" /> {{ element | replace("_", " ") | capitalize}} </label><br>
       {% endfor %}
-      </form>
     {% endif %}
   </div>
 
@@ -46,11 +47,9 @@ env.addFilter('date', dateFilter);
     {% endfor %}
     {% if current_display.length >= 2%}
       <h4><strong>Filter by Location:</strong></h4>
-      <form>
       {% for element in current_display %}
         <label><input type="checkbox" name="jr-location" value="{{ element }}" id="chkbox-{{ element }}" /> {{ element }} </label><br>
       {% endfor %}
-      </form>
     {% endif %}
   </div>
 
@@ -63,11 +62,9 @@ env.addFilter('date', dateFilter);
     {% endfor %}
     {% if current_display.length >= 2%}
       <h4><strong>Filter by Capability:</strong></h4>
-      <form>
       {% for element in current_display %}
         <label><input type="checkbox" name="jr-capability" value="{{ element }}" id="chkbox-{{ element }}" /> {{ element | replace("_", " ") | capitalize}} </label><br>
       {% endfor %}
-      </form>
     {% endif %}
   </div>
 
@@ -80,22 +77,21 @@ env.addFilter('date', dateFilter);
     {% endfor %}
     {% if current_display.length >= 2%}
       <h4><strong>Filter by Band:</strong></h4>
-      <form>
       {% for element in current_display %}
         <label><input type="checkbox" name="jr-band" value="{{ element }}" id="chkbox-{{ element }}" /> {{ element | replace("_", " ") | capitalize}} </label><br>
       {% endfor %}
-      </form>
     {% endif %}
   </div>
 </div>
 
-<table id="jobRolesTable" summary="This data table shows the current job roles within Kainos" style="display: block;">
+<table id="jobRolesTable" summary="This data table shows the current job roles within Kainos" style="visibility: visible;">
   <thead>
       <tr>
           <th scope="col">Title</th>
           <th scope="col">Location</th>
           <th scope="col">Contract Type</th>
           <th scope="col">Posted At</th>
+          <th scope="col">Delete</th>
       </tr>
   </thead>
   <tbody>
@@ -107,6 +103,7 @@ env.addFilter('date', dateFilter);
             </td>
             <td scope="row"> {{ job_role.contractType | replace("_", " ") | capitalize}} </td>
             <td scope="row"> {{ job_role.posted | date("DD MMM YYYY") }} </td>
+            <td scope="row" style="text-align: center;"><button title="Confirm Delete with a Bin Icon" class="icon" onclick="confirmDeleteFunc({{job_role.id}}, '{{job_role.title}}')"><i class="fa fa-trash-o"></i></button> </td>
         </tr>
       {% endfor %}
   </tbody>
@@ -169,7 +166,7 @@ There are no results for this search.
 
     if($('.jobRole').children(':visible').length == 0) {
       document.getElementById("noresults").style.display = "block";
-      document.getElementById("jobRolesTable").style.display = "none";
+      document.getElementById("jobRolesTable").style.visibility = "hidden";
     } else {
       document.getElementById("noresults").style.display = "none";
     }
@@ -184,13 +181,10 @@ There are no results for this search.
         }
     }
     $('.jobRole').show();
-    document.getElementById("jobRolesTable").style.display = "block";
+    document.getElementById("jobRolesTable").style.display = "visible";
     document.getElementById("noresults").style.display = "none";
   }
 
-</script>
-
-<script>
   function showFilterFunc() {
     var x = document.getElementById("filterblock");
     var elem = document.getElementById("filterbutton");
@@ -200,6 +194,20 @@ There are no results for this search.
     } else {
       x.style.display = "none";
       elem.value = 'View Filters';
+    }
+  }
+
+  function confirmDeleteFunc(job_role_id, job_role_title) {
+    var response = confirm('Are you sure you would like to delete the '+ job_role_title +' role?');
+    if (response == true) {
+      $.ajax({  
+        url: 'viewjobroles/removerole/'+job_role_id,
+        type: 'delete',                                                                        
+        success: function(result) {window.location.reload();}
+      });
+      txt = job_role_title+" has been deleted";
+    } else {
+      txt = job_role_title+" will not be deleted";
     }
   }
 </script>
