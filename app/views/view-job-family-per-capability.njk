@@ -8,7 +8,7 @@
   <a href="http://localhost:7999/navigation" title="Back to Homepage Link">Back to Homepage</a>
 </div>
 
-<h1 id=page_title>Job Family Per Capability</h1>
+<h1 id="page_title">Job Family Per Capability</h1>
 <p> Please click the capability buttons to view the related job families.</p>
     <div>
         <button class="competency-button" onclick="expandFunction('Engineering1')"> Engineering </button>
@@ -25,6 +25,7 @@
         </thead>
         <tbody>
         {%for jobFamily in jobFamilies%} 
+            {% if jobFamily.capabilityName == 'Engineering' %}
             <tr>
                 <td scope="row">{{jobFamily.jobFamilyName}}<br></td>
                 <td scope="row">
@@ -33,6 +34,37 @@
                 {%endfor%}
                 </td>
             </tr>
+            {% endif %}
+        {%endfor%}
+        </tbody>
+        </table>
+    </div>
+
+    <div>
+        <button class="competency-button" onclick="expandFunction('Cyber Security')"> Cyber Security </button>
+    </div>
+
+    {% set div = '<div class="competency-block" id="Cyber Security" style="display: none;"> '%}
+    {{div | safe}}
+        <table class="green-table" summary="This data table shows job families per capability">
+        <thead>
+            <tr>
+                <th scope="col"> Job Family </th>
+                <th scope="col"> Job Titles </th>
+            </tr>
+        </thead>
+        <tbody>
+        {%for jobFamily in jobFamilies%} 
+            {% if jobFamily.capabilityName == 'Cyber_Security' %}
+                <tr>
+                    <td scope="row">{{jobFamily.jobFamilyName}}<br></td>
+                    <td scope="row">
+                    {%for jobTitleName in jobFamily.jobTitles%}
+                        {{jobTitleName}} <br>
+                    {%endfor%}
+                    </td>
+                </tr>
+        {% endif %}
         {%endfor%}
         </tbody>
         </table>
