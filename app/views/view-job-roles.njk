@@ -16,7 +16,6 @@ env.addFilter('date', dateFilter);
 
 <h1 id="page_title">View Job Roles</h1>
 
-<div><p id="deleteconfirmation" style="text-align: center; display: block;"></p></div>
 <input onclick="showFilterFunc()" type="button" value="View Filters" id="filterbutton"></input>
 
 <div class="jobRoles-wrap" id="filterblock" style="display: none;">
@@ -200,8 +199,6 @@ There are no results for this search.
 
   function confirmDeleteFunc(job_role_id, job_role_title) {
     var response = confirm('Are you sure you would like to delete the '+ job_role_title +' role?');
-    document.getElementById("deleteconfirmation").innerHTML = "";
-    $("#deleteconfirmation").fadeIn( 400 );
     if (response == true) {
       $.ajax({  
         url: 'viewjobroles/removerole/'+job_role_id,
@@ -212,8 +209,6 @@ There are no results for this search.
     } else {
       txt = job_role_title+" will not be deleted";
     }
-    document.getElementById("deleteconfirmation").innerHTML = txt;
-    $("#deleteconfirmation").delay( 3000 ).fadeOut( 400 );
   }
 </script>
 
