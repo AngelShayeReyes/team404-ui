@@ -48,7 +48,7 @@ describe("Test the competency service endpoint", () => {
         });
         let results = await getJobFamilies();
         expect(results).toBe(expected.data);
-        expect(mockAxios.get).toHaveBeenCalledWith('http://localhost:8080/job-family/engineering');
+        expect(mockAxios.get).toHaveBeenCalledWith('http://localhost:8080/job-family');
     });
 
     test("The results should return an undefined list", async () => {
@@ -57,6 +57,6 @@ describe("Test the competency service endpoint", () => {
         });
         let results = await getJobFamilies();
         expect(results).toBe(undefined);
-        expect(mockAxios.get).toHaveBeenCalledWith('http://localhost:8080/job-family/engineering');
+        expect(mockAxios.get).toHaveBeenCalledWith('http://localhost:8080/job-family');
     })
 })

@@ -47,7 +47,6 @@ describe('Checkout Navigation Page', function () {
     });
 
     it('Check link from navigation to job family', async function() {
-        await driver.navigate().back();
         await driver.findElement(By.id("Job Family Per Capability Link")).click()
         let page_header = await driver.findElement(By.id("page_title")).getText(); 	
         assert.equal(page_header, 'Job Family Per Capability');            
