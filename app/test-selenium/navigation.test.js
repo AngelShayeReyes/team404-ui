@@ -46,6 +46,18 @@ describe('Checkout Navigation Page', function () {
         assert.equal(page_header, 'Kainos Job Application'); 
     });
 
+    it('Check link from navigation to job family', async function() {
+        await driver.findElement(By.id("Job Family Per Capability Link")).click()
+        let page_header = await driver.findElement(By.id("page_title")).getText(); 	
+        assert.equal(page_header, 'Job Family Per Capability');            
+    });
+
+    it('Check link bannar links to homepage', async function() {
+        await driver.findElement(By.xpath("/html/body/div[1]/a/img")).click()
+        let page_header = await driver.findElement(By.id("page_title")).getText(); 	
+        assert.equal(page_header, 'Kainos Job Application'); 
+    });
+
     after(() => driver && driver.quit());
     
 })
