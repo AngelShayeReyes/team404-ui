@@ -11,9 +11,11 @@ router.post("/", async (req, res) => {
     locations = await addNewRoleService.getAllLocations();
     
     selectedLocations = [];
-    for (let i = 0; i < locations.length; i++ ){
-        if (eval('req.body.location' + (i+1))) {
-            selectedLocations.push(eval('req.body.location' + (i+1)))
+    if (locations) {
+        for (let i = 0; i < locations.length; i++ ){
+            if (eval('req.body.location' + (i+1))) {
+                selectedLocations.push(eval('req.body.location' + (i+1)))
+            }
         }
     }
     
@@ -29,13 +31,23 @@ router.post("/", async (req, res) => {
         sharepointLink: req.body.sharepointLink
     }
 
-    if (newRole.title && newRole.description && newRole.contractType && newRole.locations.length > 0 
-        && newRole.capability && newRole.responsibilities && newRole.band && newRole.jobFamily && newRole.sharePointLink) {
-        let status = await addNewRoleService.addNewRole(newRole);
-        res.render('add-new-role', {bands: await addNewRoleService.getAllBands(), locations: locations, data: req.body, status: status});
-    } else {
+    if (!(newRole.title && newRole.description && newRole.contractType && newRole.locations.length > 0 
+        && newRole.capability && newRole.responsibilities && newRole.band && newRole.jobFamily && newRole.sharePointLink)) {
+
         res.locals.errormessage = "Empty fields!";
         res.render('add-new-role', {bands: await addNewRoleService.getAllBands(), locations: locations, data: req.body});
+    } else if (newRole.title.length > 200) {
+        res.locals.errormessage = "Title too long! Max 200 characters!";
+        res.render('add-new-role', {bands: await addNewRoleService.getAllBands(), locations: locations, data: req.body});
+    } else if (newRole.responsibilities.length > 200) {
+        res.locals.errormessage = "Responsibilities too long! Max 400 characters!";
+        res.render('add-new-role', {bands: await addNewRoleService.getAllBands(), locations: locations, data: req.body});
+    } else if (newRole.sharepointLink.length > 200) {
+        res.locals.errormessage = "Sharepoint Link too long! Max 200 characters!";
+        res.render('add-new-role', {bands: await addNewRoleService.getAllBands(), locations: locations, data: req.body});
+    } else {
+        let status = await addNewRoleService.addNewRole(newRole);
+        res.render('add-new-role', {bands: await addNewRoleService.getAllBands(), locations: locations, data: req.body, status: status});
     }
     
     console.log(newRole)
