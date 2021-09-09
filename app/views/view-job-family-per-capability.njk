@@ -8,13 +8,21 @@
   <a href="http://localhost:7999/navigation" title="Back to Homepage Link">Back to Homepage</a>
 </div>
 
+{% set current_display = [] %}
+{%for jobFamily in jobFamilies%} 
+    {% if not current_display.includes(jobFamily.capabilityName) %}
+    {% set current_display = (current_display.push(jobFamily.capabilityName), current_display) %}
+    {% endif %}
+{% endfor %}
+
 <h1 id="page_title">Job Family Per Capability</h1>
 <p> Please click the capability buttons to view the related job families.</p>
+{%for capability in current_display%} 
     <div>
-        <button class="competency-button" onclick="expandFunction('Engineering1')"> Engineering </button>
+        <button class="competency-button" onclick="expandFunction('{{capability}}')"> {{capability}} </button>
     </div>
 
-    {% set div = '<div class="competency-block" id="Engineering1" style="display: none;"> '%}
+    {% set div = '<div class="competency-block" id="' + capability + '" style="display: none;">' %}
     {{div | safe}}
         <table class="green-table" summary="This data table shows job families per capability">
         <thead>
@@ -25,7 +33,7 @@
         </thead>
         <tbody>
         {%for jobFamily in jobFamilies%} 
-            {% if jobFamily.capabilityName == 'Engineering' %}
+            {% if jobFamily.capabilityName == capability %}
             <tr>
                 <td scope="row">{{jobFamily.jobFamilyName}}<br></td>
                 <td scope="row">
@@ -39,36 +47,7 @@
         </tbody>
         </table>
     </div>
-
-    <div>
-        <button class="competency-button" onclick="expandFunction('Cyber Security')"> Cyber Security </button>
-    </div>
-
-    {% set div = '<div class="competency-block" id="Cyber Security" style="display: none;"> '%}
-    {{div | safe}}
-        <table class="green-table" summary="This data table shows job families per capability">
-        <thead>
-            <tr>
-                <th scope="col"> Job Family </th>
-                <th scope="col"> Job Titles </th>
-            </tr>
-        </thead>
-        <tbody>
-        {%for jobFamily in jobFamilies%} 
-            {% if jobFamily.capabilityName == 'Cyber_Security' %}
-                <tr>
-                    <td scope="row">{{jobFamily.jobFamilyName}}<br></td>
-                    <td scope="row">
-                    {%for jobTitleName in jobFamily.jobTitles%}
-                        {{jobTitleName}} <br>
-                    {%endfor%}
-                    </td>
-                </tr>
-        {% endif %}
-        {%endfor%}
-        </tbody>
-        </table>
-    </div>
+{% endfor %}
 
 <script>
 function expandFunction(element_id) {
