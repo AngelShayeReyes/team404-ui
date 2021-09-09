@@ -38,7 +38,7 @@ describe('Checkout Job Family Per Capability', function () {
         assert.equal(innerText, "Engineering Strategy and Planning");  
     });
 
-    it('Check Engineering job title for a job family from API is being displayed', async function(){ 
+    it('Check Engineering job title for a job family from API is being displayed', async function(){  
         let innerText = await driver.findElement(By.xpath('//*[@id="Engineering1"]/table/tbody/tr[3]/td[2]')).getText();
         assert.equal(innerText, "Technical Architect");  
     });
