@@ -20,6 +20,18 @@ describe('Checkout Job Family Per Capability', function () {
         assert.equal(page_header, 'Job Family Per Capability');              
     });
 
+    it('Check engineering job families table is shown when button is pressed', async function() {
+        await driver.findElement(By.xpath("/html/body/div[3]/button")).click()     
+        let innerText = await driver.findElement(By.id("Engineering1")).getCssValue("display");
+        assert.equal(innerText, 'block'); 
+    });
+
+    it('Check engineering job families table is not shown as default', async function() {  
+        await driver.findElement(By.xpath("/html/body/div[3]/button")).click()       
+        let innerText = await driver.findElement(By.id("Engineering1")).getCssValue("display");
+        assert.equal(innerText, 'none'); 
+    });
+
     it('Check Engineering job family name from API is being displayed', async function(){
         await driver.findElement(By.xpath("/html/body/div[3]/button")).click()  
         let innerText = await driver.findElement(By.xpath('//*[@id="Engineering1"]/table/tbody/tr[1]/td[1]')).getText(); 	
@@ -27,20 +39,8 @@ describe('Checkout Job Family Per Capability', function () {
     });
 
     it('Check Engineering job title for a job family from API is being displayed', async function(){ 
-        await driver.findElement(By.xpath("/html/body/div[3]/button")).click()  
         let innerText = await driver.findElement(By.xpath('//*[@id="Engineering1"]/table/tbody/tr[3]/td[2]')).getText();
         assert.equal(innerText, "Technical Architect");  
-    });
-
-    it('Check engineering job families table is not shown as default', async function() {    
-        let innerText = await driver.findElement(By.id("Engineering1")).getCssValue("display");
-        assert.equal(innerText, 'none'); 
-    });
-
-    it('Check engineering job families table is shown when button is pressed', async function() {
-        await driver.findElement(By.xpath("/html/body/div[3]/button")).click()     
-        let innerText = await driver.findElement(By.id("Engineering1")).getCssValue("display");
-        assert.equal(innerText, 'block'); 
     });
 
     it('Check homepage button link goes back to navigation', async function() {
