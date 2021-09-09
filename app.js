@@ -25,6 +25,7 @@ const jobSpecRoutes = require('./app/routes/job-specification-route.js');
 const competenciesRoutes = require('./app/routes/competencies-route.js');
 const matrixOfRolesRoutes = require('./app/routes/matrix-roles-route');
 
+app.use("/", navigationRoute);
 app.use("/navigation", navigationRoute);
 app.use("/viewjobroles", jobRoleRoutes);
 app.use("/viewjobspecification", jobSpecRoutes);
