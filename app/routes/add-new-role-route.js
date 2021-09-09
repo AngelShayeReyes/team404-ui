@@ -10,61 +10,26 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
     locations = await addNewRoleService.getAllLocations();
     
-    selectedLocations = getLocations(locations);
-    
-    var newRole = packNewRole(req,selectedLocations);
-
-    if (validateInput(newRole)[0]) {
-        let status = await addNewRoleService.addNewRole(newRole);
-        res.render('add-new-role', {bands: await addNewRoleService.getAllBands(), locations: locations, data: req.body, status: status});
-    } else {
-        res.locals.errormessage = validateInput(newRole)[1];
-        res.render('add-new-role', {bands: await addNewRoleService.getAllBands(), locations: locations, data: req.body});
-    }
-    
-    console.log(newRole)
-});
-
-function getLocations(locations) {
     selectedLocations = [];
-    if (locations) {
+    if (locations && typeof(req) != "undefined") {
         for (let i = 0; i < locations.length; i++ ){
             if (eval('req.body.location' + (i+1))) {
                 selectedLocations.push(eval('req.body.location' + (i+1)))
             }
         }
     }
-    return selectedLocations;
-}
+    
+    var newRole = addNewRoleService.packNewRole(req,selectedLocations);
 
-function packNewRole(req, selectedLocations) {
-    return {
-        title: req.body.title,
-        description: req.body.description,
-        contractType: req.body.contractType,
-        locations: selectedLocations,
-        capability: req.body.capability,
-        responsibilities: req.body.responsibilities,
-        band: req.body.band,
-        jobFamily: req.body.jobFamily,
-        sharepointLink: req.body.sharepointLink
-    }
-}
-
-function validateInput(newRole) {
-    if (!(newRole.title && newRole.description && newRole.contractType && newRole.locations.length > 0 
-        && newRole.capability && newRole.responsibilities && newRole.band && newRole.jobFamily && newRole.sharePointLink)) {
-
-            return [false, "Empty fields!"]
-    } else if (newRole.title.length > 200) {
-        return [false, "Title too long! Max 200 characters!"]
-    } else if (newRole.responsibilities.length > 200) {
-        return [false, "Responsibilities too long! Max 400 characters!"]
-    } else if (newRole.sharepointLink.length > 200) {
-        return [false, "Sharepoint Link too long! Max 200 characters!"]
+    if (addNewRoleService.validateInput(newRole)[0]) {
+        let status = await addNewRoleService.addNewRole(newRole);
+        res.render('add-new-role', {bands: await addNewRoleService.getAllBands(), locations: locations, data: req.body, status: status});
     } else {
-        return [true, "No error!"]
+        res.locals.errormessage = addNewRoleService.validateInput(newRole)[1];
+        res.render('add-new-role', {bands: await addNewRoleService.getAllBands(), locations: locations, data: req.body});
     }
-}
+    
+    console.log(newRole)
+});
 
 module.exports = router
